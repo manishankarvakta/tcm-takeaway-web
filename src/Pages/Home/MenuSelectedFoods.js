@@ -1,30 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import FoodDetailsModal from './FoodDetailsModal';
 import MenuSelectedFood from './MenuSelectedFood';
 
 const MenuSelectedFoods = () => {
 
-    const [menuFoods, setMenuFoods] = useState([])
+    const [menuFoods, setMenuFoods] = useState([]);
+    const [openModal, setOpenModal] = useState(null);
+    // const [showModal, setShowModal] = useState(false);
+    const [count, setCount] = useState(0)
     useEffect(() => {
         fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
             .then(res => res.json())
             .then(result => setMenuFoods(result.meals))
     }, [])
-    console.log(menuFoods)
+
 
     return (
-        <div className='grid grid-cols-4 gap-3 justify-items-center items-center px-6'>
+        <div className='grid sm:grid-cols-1 lg:grid-cols-5 gap-8 drop-shadow-md justify-items-center items-center pt-5 px-12'>
             {
                 menuFoods?.length > 0 ?
                     menuFoods?.map(menuFood =>
                         <MenuSelectedFood
                             menuFood={menuFood}
+                            setOpenModal={setOpenModal}
+                            setCount={setCount}
+                            count={count}
                         ></MenuSelectedFood>
                         // console.log(menuFood.strMeal)
                     )
                     :
                     <></>
             }
-        </div>
+            {
+                openModal && <FoodDetailsModal
+                    openModal={openModal}
+                    setOpenModal={setOpenModal}
+                ></FoodDetailsModal>
+            }
+        </div >
     );
 };
 
