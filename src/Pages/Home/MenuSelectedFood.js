@@ -2,8 +2,9 @@ import React from 'react';
 import { PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from "react-router-dom";
 
-const MenuSelectedFood = ({ menuFood, setOpenModal, count, setCount, setShowModal }) => {
-    const { strMealThumb, strMeal } = menuFood;
+const MenuSelectedFood = ({ menuFood, setOpenModal, count, setCount }) => {
+    // console.log(menuFood)
+    const { idMeal, strMealThumb, strMeal } = menuFood;
     const navigate = useNavigate();
 
     const handleAddition = () => {
@@ -17,8 +18,8 @@ const MenuSelectedFood = ({ menuFood, setOpenModal, count, setCount, setShowModa
         }
 
     }
-    const handleProductDetails = () => {
-
+    const handleProductDetails = (id) => {
+        navigate(`/product/${id}`)
     }
 
 
@@ -51,7 +52,7 @@ const MenuSelectedFood = ({ menuFood, setOpenModal, count, setCount, setShowModa
             </div>
             <div className='flex space-x-4'>
                 <button className='btn btn-xs'>Add to Cart</button>
-                <button onClick={() => handleProductDetails()} className='btn btn-xs'>View Details</button>
+                <button onClick={() => handleProductDetails(idMeal)} className='btn btn-xs'>View Details</button>
             </div>
 
         </div>

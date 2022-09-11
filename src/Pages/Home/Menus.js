@@ -6,7 +6,7 @@ const Menus = () => {
     }
     return (
         <div className='mb-5 justify-center items-center'>
-            <h1>Menu</h1>
+            <h1>We serve</h1>
 
             <div className='flex justify-center items-center'>
                 <div onClick={() => { loadMenus() }} className='card bg-base-100 shadow-xl mx-2 pb-2 px-2 hover:bg-orange-200 hover:scale-105'>
