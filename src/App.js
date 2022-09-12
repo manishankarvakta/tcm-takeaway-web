@@ -7,6 +7,10 @@ import Allproducts from './Pages/AllProducts/Allproducts';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import Login from './Pages/LogIn/Login';
 import Register from './Pages/LogIn/Register';
+import Footer from './Pages/Shared/Footer';
+import Dashboard from './Pages/DashBoard/Dashboard';
+import PersonalInfo from './Pages/DashBoard/PersonalInfo';
+import PreviousOrder from './Pages/DashBoard/PreviousOrder';
 
 
 function App() {
@@ -21,7 +25,14 @@ function App() {
         <Route path='/aboutus' element={<AboutUs></AboutUs>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<Register></Register>}></Route>
+        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+          <Route index element={<PersonalInfo></PersonalInfo>}></Route>
+          <Route path='perivousorders' element={<PreviousOrder></PreviousOrder>}></Route>
+
+
+        </Route>
       </Routes>
+      <Footer></Footer>
 
     </div>
   );
