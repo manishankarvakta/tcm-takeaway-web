@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import auth from '../../firebase.init';
 
 const Register = () => {
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         createUserWithEmailAndPassword,
@@ -15,17 +16,22 @@ const Register = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, fuser, floading, ferror] = useSignInWithFacebook(auth);
 
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
 
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.name });
         console.log('update done');
+    }
+
+
+    let signInError;
+    if (error || gError || ferror) {
+        signInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
     }
 
     return (
         <div>
-            <div className='flex h-screen justify-center items-center'>
+            <div className='flex lg:justify-center lg:items-center'>
                 <div className="card w-96 bg-base-100 shadow-xl">
                     <div className="card-body">
                         <h2 className="text-center text-2xl font-bold">Sign Up</h2>
@@ -105,6 +111,7 @@ const Register = () => {
                         </form>
                         <p><small>Already have an account? <Link className='text-primary' to="/login">Please login</Link></small></p>
                         <div className="divider">OR</div>
+                        {signInError}
                         <button
                             onClick={() => signInWithGoogle()}
                             className="btn btn-outline"
