@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Category from './Category';
 import { ArrowRightCircleIcon, ArrowLeftCircleIcon } from '@heroicons/react/24/solid';
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick';
+
 
 const Menus = () => {
     const [categories, setCategories] = useState([]);
@@ -15,30 +17,35 @@ const Menus = () => {
             .then(data => setCategories(data))
     }, [])
 
-    const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 3,
-            slidesToSlide: 3 // optional, default to 1.
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2,
-            slidesToSlide: 2 // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            slidesToSlide: 1 // optional, default to 1.
-        }
-    };
+    // const settings = {
+    //     dots: true,
+    //     infinite: false,
+    //     speed: 500,
+    //     slidesToShow: 3,
+    //     slidesToScroll: 1,
 
+    // };
+
+    const settings = {
+        dots: true,
+        infinite: false,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        slidesToShow: 8,
+        responsive: [
+            {
+                breakpoint: 900,
+                settings: {
+                    slidesToShow: 3,
+                },
+            }],
+    };
 
     const loadMenus = () => {
 
     }
     return (
-        <div className='mb-5 justify-center items-center'>
+        <div className='mb-5 justify-center items-center lg:px-12'>
             <h1 className='font-semibold text-3xl'>We Serve</h1>
 
             {/* <div className='flex justify-center items-center'>
@@ -55,11 +62,8 @@ const Menus = () => {
                 }
             </div> */}
 
-            <Carousel
-                responsive={responsive}
-            >
-                <div className='flex justify-center items-center'>
-
+            <div className='my-5 '>
+                <Slider {...settings}>
                     {
                         categories?.length > 0 ?
                             categories?.map(category =>
@@ -70,8 +74,9 @@ const Menus = () => {
                             :
                             <></>
                     }
-                </div>
-            </Carousel>;
+                </Slider>
+            </div>
+
 
         </div>
 

@@ -14,8 +14,8 @@ const PersonalInfo = () => {
 
     return (
         <div className='flex justify-center items-center mt-5'>
-            <div>
-                <div className="card card-compact w-96 bg-base-100 shadow-xl px-5">
+            <div className='flex justify-center items-center'>
+                <div className="card card-compact lg:w-1/2 bg-base-100 shadow-xl px-5 sm:w-96">
                     <figure><img className='rounded-full' src='https://i.ibb.co/Wx8MJWC/cheerful-curly-business-girl-wearing-glasses.jpg' alt="menu" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">Prottasa Karim</h2>

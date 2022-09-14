@@ -16,7 +16,7 @@ const MenuSelectedFoods = () => {
 
 
     return (
-        <div className='grid sm:grid-cols-1 lg:grid-cols-5 gap-8 drop-shadow-md justify-items-center items-center pt-5 px-12'>
+        <div className='grid sm:grid-cols-1 lg:grid-cols-5 gap-12 drop-shadow-md justify-items-center items-center pt-5 px-16'>
             {
                 menuFoods?.length > 0 ?
                     menuFoods?.map(menuFood =>
