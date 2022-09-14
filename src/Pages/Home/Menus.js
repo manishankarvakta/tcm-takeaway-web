@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 
 
-const Menus = () => {
+const Menus = ({ setId }) => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
@@ -69,6 +69,7 @@ const Menus = () => {
                             categories?.map(category =>
                                 <Category
                                     category={category}
+                                    setId={setId}
                                 ></Category>
                             )
                             :
