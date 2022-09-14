@@ -32,6 +32,7 @@ const Navbar = () => {
                             </Link>
                             <ul className="p-2">
                                 <li><Link to='/dashboard'>Personal Info</Link></li>
+                                <li><Link to='/dashboard/updatepersonalinfo'>Update Personal Info</Link></li>
                                 <li><Link to='/dashboard/perivousorders'>Previous Order</Link></li>
                             </ul>
                         </li>

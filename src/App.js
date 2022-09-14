@@ -11,6 +11,7 @@ import Footer from './Pages/Shared/Footer';
 import Dashboard from './Pages/DashBoard/Dashboard';
 import PersonalInfo from './Pages/DashBoard/PersonalInfo';
 import PreviousOrder from './Pages/DashBoard/PreviousOrder';
+import UpdatePersonalInfo from './Pages/DashBoard/UpdatePersonalInfo';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
           <Route index element={<PersonalInfo></PersonalInfo>}></Route>
           <Route path='perivousorders' element={<PreviousOrder></PreviousOrder>}></Route>
+          <Route path='updatepersonalinfo' element={<UpdatePersonalInfo></UpdatePersonalInfo>}></Route>
 
 
         </Route>
