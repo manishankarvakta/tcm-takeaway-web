@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartIcon, BeakerIcon } from '@heroicons/react/24/solid';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -12,6 +12,12 @@ const Navbar = () => {
         signOut(auth);
 
     };
+
+    const navigate = useNavigate();
+
+    const navigateToVeiwCart = () => {
+        navigate('/viewcart')
+    }
 
 
     return (
@@ -50,7 +56,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <ShoppingCartIcon className="h-6 w-6 text-black"
+                <ShoppingCartIcon onClick={() => navigateToVeiwCart()} className="h-6 w-6 text-black"
                 ></ShoppingCartIcon>
 
                 {

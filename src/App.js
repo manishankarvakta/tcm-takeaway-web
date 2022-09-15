@@ -12,6 +12,7 @@ import Dashboard from './Pages/DashBoard/Dashboard';
 import PersonalInfo from './Pages/DashBoard/PersonalInfo';
 import PreviousOrder from './Pages/DashBoard/PreviousOrder';
 import UpdatePersonalInfo from './Pages/DashBoard/UpdatePersonalInfo';
+import ViewCart from './Pages/Order/ViewCart';
 
 
 function App() {
@@ -23,16 +24,17 @@ function App() {
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>
         <Route path='/allproducts' element={<Allproducts></Allproducts>}></Route>
+        <Route path='/viewcart' element={<ViewCart></ViewCart>}></Route>
         <Route path='/aboutus' element={<AboutUs></AboutUs>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<Register></Register>}></Route>
+
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
           <Route index element={<PersonalInfo></PersonalInfo>}></Route>
           <Route path='perivousorders' element={<PreviousOrder></PreviousOrder>}></Route>
           <Route path='updatepersonalinfo' element={<UpdatePersonalInfo></UpdatePersonalInfo>}></Route>
-
-
         </Route>
+
       </Routes>
       <Footer></Footer>
 
