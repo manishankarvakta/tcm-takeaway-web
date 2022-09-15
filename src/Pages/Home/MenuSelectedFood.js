@@ -2,22 +2,40 @@ import React from 'react';
 import { PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from "react-router-dom";
 
-const MenuSelectedFood = ({ menuFood, setOpenModal, count, setCount }) => {
+import { addToDb, removeQuantity } from '../../hooks/localStorageCart3'
+import { useState } from 'react';
+
+const MenuSelectedFood = ({ menuFood, setOpenModal }) => {
     // console.log(menuFood)
     const { ean, name, _id } = menuFood;
     const navigate = useNavigate();
 
-    const handleAddition = () => {
-        count = count + 1;
-        setCount(count);
-    }
-    const handleSubtraction = () => {
-        if (count > 0) {
-            count = count - 1;
-            setCount(count);
-        }
+    const [count, setCount] = useState(0);
+    const handleAddition = (menuFood) => {
+        const { _id } = menuFood;
+        const addProduct = addToDb(menuFood);
+        console.log(addProduct)
+        const restItem = addProduct.find((p) => p.id === _id);
+        console.log(restItem.qty)
+        setCount(restItem.qty)
 
     }
+    const handleSubtraction = (menuFood) => {
+        const { _id } = menuFood;
+        const removeProductQty = removeQuantity(menuFood)
+        // console.log(removeProductQty)
+        const restItem = removeProductQty.find((p) => p.id === _id);
+        console.log(restItem)
+        if (restItem === 'undefined') {
+            setCount(0)
+        }
+        else {
+            setCount(restItem?.qty)
+        }
+        // setCount(restItem?.qty)
+    }
+
+
     const handleProductDetails = (id) => {
         navigate(`/product/${id}`)
     }
@@ -37,10 +55,11 @@ const MenuSelectedFood = ({ menuFood, setOpenModal, count, setCount }) => {
                 <p className='text-center'>Price: $20</p>
             </div>
             <div className='flex justify-center items-center space-x-4 mb-4'>
-                <PlusCircleIcon onClick={() => { handleAddition() }} className='h-6 w-6'></PlusCircleIcon>
-                <input type="text" placeholder="0" disabled value={count || ''} className="w-20 input input-bordered text-center"></input>
+                <MinusCircleIcon onClick={() => { handleSubtraction(menuFood) }} className='h-6 w-6'></MinusCircleIcon>
+                <input type="text" placeholder="0" disabled value={count || '0'} className="w-20 input input-bordered text-center"></input>
 
-                <MinusCircleIcon onClick={() => { handleSubtraction() }} className='h-6 w-6'></MinusCircleIcon>
+
+                <PlusCircleIcon onClick={() => { handleAddition(menuFood) }} className='h-6 w-6'></PlusCircleIcon>
             </div>
             <div className='flex space-x-4'>
                 <button className='btn btn-xs'>Add to Cart</button>

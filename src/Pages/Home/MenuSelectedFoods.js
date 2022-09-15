@@ -3,11 +3,12 @@ import FoodDetailsModal from './FoodDetailsModal';
 import MenuSelectedFood from './MenuSelectedFood';
 
 const MenuSelectedFoods = ({ id }) => {
-    console.log(id)
+    // console.log(id)
     const [menuFoods, setMenuFoods] = useState([]);
     const [openModal, setOpenModal] = useState(null);
+
     // const [showModal, setShowModal] = useState(false);
-    const [count, setCount] = useState(0)
+
     // useEffect(() => {
     //     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
     //         .then(res => res.json())
@@ -22,7 +23,7 @@ const MenuSelectedFoods = ({ id }) => {
             .then(result => setMenuFoods(result))
     }, [id])
 
-    console.log(menuFoods)
+    // console.log(menuFoods)
 
 
 
@@ -34,8 +35,6 @@ const MenuSelectedFoods = ({ id }) => {
                         <MenuSelectedFood
                             menuFood={menuFood}
                             setOpenModal={setOpenModal}
-                            setCount={setCount}
-                            count={count}
                         ></MenuSelectedFood>
                         // console.log(menuFood.strMeal)
                     )
