@@ -1,15 +1,14 @@
 import React from 'react';
 import { PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from "react-router-dom";
-
 import { addToDb, getStoredCart, removeQuantity } from '../../hooks/localStorageCart3'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import getFoodQuantity from '../../hooks/getFoodQuantity';
 
 const MenuSelectedFood = ({ menuFood, setOpenModal, foodItem }) => {
-    // console.log(menuFood)
-    const { ean, name, _id } = menuFood;
+    console.log(menuFood)
+    const { ean, name, _id, priceList } = menuFood;
     const navigate = useNavigate();
 
     const [count, setCount] = useState(0);
@@ -17,8 +16,9 @@ const MenuSelectedFood = ({ menuFood, setOpenModal, foodItem }) => {
     const foodItems = getStoredCart();
     console.log(foodItems);
     const food = getFoodQuantity(_id)
-    console.log(food)
-    // setCount(food.qty)
+    const quantity = food?.qty || 0
+
+    // setCount(quantity)
 
     const handleAddition = (menuFood) => {
         const { _id } = menuFood;
@@ -51,21 +51,21 @@ const MenuSelectedFood = ({ menuFood, setOpenModal, foodItem }) => {
 
 
     return (
-        <div className="drop-shadow-md ">
+        <div className="drop-shadow-lg ">
             <label
                 htmlFor="food-details-modal"
                 onClick={() => setOpenModal(menuFood)}
-            ><figure><img className='rounded-full' src='https://i.ibb.co/K6hpLmj/pasta-fettuccine-bolognese-with-tomato-sauce-white-bowl.jpg' alt="menu" /></figure>
+            ><figure><img className='rounded' src='https://i.ibb.co/K6hpLmj/pasta-fettuccine-bolognese-with-tomato-sauce-white-bowl.jpg' alt="menu" /></figure>
             </label>
 
             <div className="card-body">
-                <h2 className="text-center font-bold text-lg">{name}</h2>
+                <h2 className="text-center font-bold text-md">{name}</h2>
 
-                <p className='text-center'>Price: $20</p>
+                <p className='text-center'>Price: {priceList[0]?.mrp}</p>
             </div>
-            <div className='flex justify-center items-center space-x-4 mb-4'>
+            <div className='flex justify-center items-center space-x-4 mb-2'>
                 <MinusCircleIcon onClick={() => { handleSubtraction(menuFood) }} className='h-6 w-6'></MinusCircleIcon>
-                <input type="text" placeholder="0" disabled value={count || food.qty} className="w-20 input input-bordered text-center"></input>
+                <input type="text" placeholder="0" disabled value={count} className="w-20 input input-bordered text-center"></input>
 
 
                 <PlusCircleIcon onClick={() => { handleAddition(menuFood) }} className='h-6 w-6'></PlusCircleIcon>
@@ -76,6 +76,7 @@ const MenuSelectedFood = ({ menuFood, setOpenModal, foodItem }) => {
             </div>
 
         </div>
+
     );
 };
 

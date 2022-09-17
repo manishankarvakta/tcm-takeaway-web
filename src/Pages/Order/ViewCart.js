@@ -25,12 +25,12 @@ const ViewCart = () => {
                         </div>
                         {
 
-                            myItems.length > 0 ?
+                            myItems?.length > 0 ?
                                 myItems?.map(myItem =>
                                     <MyItems
                                         myItem={myItem}
                                     ></MyItems>
-                                    // console.log(menuFood.strMeal)
+
                                 )
                                 :
                                 <></>
