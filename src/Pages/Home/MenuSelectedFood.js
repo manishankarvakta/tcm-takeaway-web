@@ -2,15 +2,24 @@ import React from 'react';
 import { PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from "react-router-dom";
 
-import { addToDb, removeQuantity } from '../../hooks/localStorageCart3'
+import { addToDb, getStoredCart, removeQuantity } from '../../hooks/localStorageCart3'
 import { useState } from 'react';
+import { useEffect } from 'react';
+import getFoodQuantity from '../../hooks/getFoodQuantity';
 
-const MenuSelectedFood = ({ menuFood, setOpenModal }) => {
+const MenuSelectedFood = ({ menuFood, setOpenModal, foodItem }) => {
     // console.log(menuFood)
     const { ean, name, _id } = menuFood;
     const navigate = useNavigate();
 
     const [count, setCount] = useState(0);
+
+    const foodItems = getStoredCart();
+    console.log(foodItems);
+    const food = getFoodQuantity(_id)
+    console.log(food)
+    // setCount(food.qty)
+
     const handleAddition = (menuFood) => {
         const { _id } = menuFood;
         const addProduct = addToDb(menuFood);
@@ -56,7 +65,7 @@ const MenuSelectedFood = ({ menuFood, setOpenModal }) => {
             </div>
             <div className='flex justify-center items-center space-x-4 mb-4'>
                 <MinusCircleIcon onClick={() => { handleSubtraction(menuFood) }} className='h-6 w-6'></MinusCircleIcon>
-                <input type="text" placeholder="0" disabled value={count || '0'} className="w-20 input input-bordered text-center"></input>
+                <input type="text" placeholder="0" disabled value={count || food.qty} className="w-20 input input-bordered text-center"></input>
 
 
                 <PlusCircleIcon onClick={() => { handleAddition(menuFood) }} className='h-6 w-6'></PlusCircleIcon>

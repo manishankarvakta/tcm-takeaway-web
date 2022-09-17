@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getStoredCart } from '../../hooks/localStorageCart3';
 import FoodDetailsModal from './FoodDetailsModal';
 import MenuSelectedFood from './MenuSelectedFood';
 
@@ -6,6 +7,7 @@ const MenuSelectedFoods = ({ id }) => {
     // console.log(id)
     const [menuFoods, setMenuFoods] = useState([]);
     const [openModal, setOpenModal] = useState(null);
+    const [count, setCount] = useState(0);
 
     // const [showModal, setShowModal] = useState(false);
 
@@ -17,7 +19,7 @@ const MenuSelectedFoods = ({ id }) => {
 
     useEffect(() => {
         const url = `https://pos-api-v1.herokuapp.com/api/product/category/${id}`
-        console.log(url)
+        // console.log(url)
         fetch(url)
             .then(res => res.json())
             .then(result => setMenuFoods(result))
@@ -25,6 +27,8 @@ const MenuSelectedFoods = ({ id }) => {
 
     // console.log(menuFoods)
 
+    // const foodItems = getStoredCart();
+    // console.log(foodItems)
 
 
     return (
@@ -41,6 +45,7 @@ const MenuSelectedFoods = ({ id }) => {
                     :
                     <></>
             }
+
             {
                 openModal && <FoodDetailsModal
                     openModal={openModal}
