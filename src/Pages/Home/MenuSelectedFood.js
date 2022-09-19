@@ -27,7 +27,6 @@ const MenuSelectedFood = ({ menuFood, setOpenModal, foodItem }) => {
         const restItem = addProduct.find((p) => p.id === _id);
         console.log(restItem.qty)
         setCount(restItem.qty)
-
     }
     const handleSubtraction = (menuFood) => {
         const { _id } = menuFood;

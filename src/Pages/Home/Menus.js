@@ -29,7 +29,7 @@ const Menus = ({ setId }) => {
   // };
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: false,
     lazyLoad: true,
     autoplay: false,
@@ -55,7 +55,7 @@ const Menus = ({ setId }) => {
     ],
   };
 
-  const loadMenus = () => {};
+  const loadMenus = () => { };
   return (
     <div className="mb-5 justify-center items-center lg:px-12">
       <h1 className="font-semibold text-3xl">We Serve</h1>

@@ -14,11 +14,11 @@ const FoodDetailsModal = ({ openModal, setOpenModal }) => {
                         <div className="card-body columns-6">
                             <h2 className="card-title">{name}</h2>
                             {/* <p className='text-sm text-left'></p> */}
-                            <div className='flex justify-items-center items-center space-x-4 mb-4'>
+                            {/* <div className='flex justify-items-center items-center space-x-4 mb-4'>
                                 <PlusCircleIcon className='h-6 w-6'></PlusCircleIcon>
                                 <input type="text" placeholder="0" className="w-20 input input-bordered" />
                                 <MinusCircleIcon className='h-6 w-6'></MinusCircleIcon>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 

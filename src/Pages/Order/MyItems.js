@@ -1,8 +1,51 @@
-import React from 'react';
-import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid';
+import React, { useState } from 'react';
+import { PlusIcon, MinusIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { addToDb, removeFromDb, removeQuantity } from '../../hooks/localStorageCart3';
+import { toast } from 'react-toastify';
 
-const MyItems = ({ myItem }) => {
-    console.log(myItem)
+
+const MyItems = ({ myNewItem, removeFoodFromCart }) => {
+    // console.log(myNewItem)
+    const [count, setCount] = useState(1);
+
+
+    // const handleRemoveItemFromCart = (myNewItem) => {
+    //     console.log('clicked')
+    //     const data = removeFromDb(myNewItem)
+    //     setMynewItems(data)
+    //     console.log(data)
+    // }
+    const toastMsg = () => {
+        toast("Item Added");
+    }
+
+    const handleAddition = (myNewItem) => {
+        const { id } = myNewItem;
+        // console.log(id)
+        const addProduct = addToDb(myNewItem);
+        // console.log(addProduct)
+        const restItem = addProduct.find((p) => p.id === id);
+        // console.log(restItem.qty)
+        setCount(restItem.qty)
+
+
+    }
+    const handleSubtraction = (menuFood) => {
+        const { id } = myNewItem;
+        const removeProductQty = removeQuantity(menuFood)
+        // console.log(removeProductQty)
+        const restItem = removeProductQty.find((p) => p.id === id);
+        // console.log(restItem)
+        if (restItem === 'undefined') {
+            setCount(1)
+        }
+        else {
+            setCount(restItem?.qty)
+        }
+        // setCount(restItem?.qty)
+    }
+
+
     return (
         // <div className='lg:flex lg:flex-row sm:flex sm:flex-col'>
         //     <div className='lg:w-1/2 sm:w-full'>
@@ -19,7 +62,7 @@ const MyItems = ({ myItem }) => {
                 <div class="flex shadow-md my-10 ">
                     <div class="lg:w-3/4 bg-white lg:px-10 sm:py-2 sm:px-2 sm:w-full">
 
-                        <p class="font-bold text-sm text-left">{myItem?.name}</p>
+                        <p class="font-bold text-sm text-left">{myNewItem?.name}</p>
                         <div class="flex items-center hover:bg-gray-100 lg:-mx-8 lg:px-6 lg:py-5 sm:mx-4">
                             <div class="flex w-2/5">
                                 <div class="lg:w-20 sm:w-24">
@@ -28,22 +71,27 @@ const MyItems = ({ myItem }) => {
 
                             </div>
                             <div class="flex justify-center w-1/5">
-                                <MinusIcon className='h-6 w-6'></MinusIcon>
+                                {/* <MinusIcon onClick={() => handleSubtraction(myNewItem)} className='h-6 w-6'></MinusIcon> */}
+                                {
+                                    count > 1 ? <MinusIcon onClick={() => handleSubtraction(myNewItem)} className='h-6 w-6'></MinusIcon> : <MinusIcon className='h-6 w-6'></MinusIcon>
+                                }
+                                <input class="mx-2 border text-center w-6" type="text" disabled value={count} />
 
-                                <input class="mx-2 border text-center w-6" type="text" value="1" />
-
-                                <PlusIcon className='h-6 w-6'></PlusIcon>
+                                <PlusIcon onClick={() => handleAddition(myNewItem)} className='h-6 w-6'></PlusIcon>
                             </div>
-                            <span class="text-center w-1/5 font-semibold text-sm">{myItem?.qty}</span>
+                            <span class="text-center w-1/5 font-semibold text-sm">{count}</span>
                             {/* <span class="text-center w-1/5 font-semibold text-sm">{myItem?.priceList[0].mrp}</span> */}
                         </div>
-                        <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                        {/* <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a> */}
+                        <button onClick={() => removeFoodFromCart(myNewItem)} className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</button>
 
                     </div>
+                    {/* <TrashIcon onClick={() => handleRemoveItemFromCart(myNewItem)} className='h-6 w-6'></TrashIcon> */}
 
                 </div>
             </div>
-        </div>
+
+        </div >
     );
 };
 

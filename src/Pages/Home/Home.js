@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Banner from './Banner';
+import CategoryWiseFoods from './CategoryWiseFoods';
 import Menus from './Menus';
 import MenuSelectedFoods from './MenuSelectedFoods';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Home = () => {
@@ -10,9 +12,11 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <Menus setId={setId}></Menus>
-            <MenuSelectedFoods
+            {/* <MenuSelectedFoods
                 id={id}
-            ></MenuSelectedFoods>
+            ></MenuSelectedFoods> */}
+            <CategoryWiseFoods id={id}></CategoryWiseFoods>
+
         </div >
     );
 };

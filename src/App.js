@@ -13,6 +13,9 @@ import PersonalInfo from './Pages/DashBoard/PersonalInfo';
 import PreviousOrder from './Pages/DashBoard/PreviousOrder';
 import UpdatePersonalInfo from './Pages/DashBoard/UpdatePersonalInfo';
 import ViewCart from './Pages/Order/ViewCart';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -36,6 +39,7 @@ function App() {
         </Route>
 
       </Routes>
+      <ToastContainer></ToastContainer>
       <Footer></Footer>
 
     </div>

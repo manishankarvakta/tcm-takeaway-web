@@ -1,11 +1,24 @@
 import React from 'react';
-import { getStoredCart } from '../../hooks/localStorageCart3';
+import { deleteFoodCart, getStoredCart, removeFromDb } from '../../hooks/localStorageCart3';
 import MyItems from './MyItems';
-import { ArrowLeftIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { useState } from 'react';
 
 const ViewCart = () => {
-    const myItems = getStoredCart();
-    console.log(myItems)
+
+    // const [myNewItems, setMynewItems] = useState([]);
+    const myNewItems = getStoredCart();
+    // setMynewItems(myItems)
+    const removeFoodFromCart = (menuFood) => {
+        console.log(menuFood)
+        const restFoods = removeFromDb(menuFood)
+        window.location.reload();
+    }
+    const handleRemoveAllItems = () => {
+        deleteFoodCart();
+        window.location.reload();
+    }
+
     return (
         <div>
 
@@ -15,7 +28,12 @@ const ViewCart = () => {
 
                         <div class="flex justify-between border-b pb-8">
                             <h1 class="font-semibold text-2xl">Food Cart</h1>
-                            <h2 class="font-semibold text-2xl">{myItems.length}</h2>
+                            <h2 class="font-semibold text-2xl">Total Items: {myNewItems.length}</h2>
+                            <div onClick={() => handleRemoveAllItems()} className='flex hover:text-red-600 hover:cursor-pointer'>
+                                <p>Remove All</p>
+                                <TrashIcon className='h-6 w-6'></TrashIcon>
+                            </div>
+
                         </div>
                         <div class="flex mt-10 mb-5">
                             <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
@@ -25,10 +43,12 @@ const ViewCart = () => {
                         </div>
                         {
 
-                            myItems?.length > 0 ?
-                                myItems?.map(myItem =>
+                            myNewItems?.length > 0 ?
+                                myNewItems?.map(myNewItem =>
                                     <MyItems
-                                        myItem={myItem}
+                                        myNewItem={myNewItem}
+                                        // setMynewItems={setMynewItems}
+                                        removeFoodFromCart={removeFoodFromCart}
                                     ></MyItems>
 
                                 )
@@ -42,6 +62,7 @@ const ViewCart = () => {
                             Continue Shopping
                         </a>
                     </div>
+
                 </div>
             </div>
             {/* {
