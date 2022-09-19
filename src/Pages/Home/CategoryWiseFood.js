@@ -61,7 +61,7 @@ const CategoryWiseFood = ({ menuFood, setOpenModal }) => {
                 </div>
 
                 <div className='space-x-4 justify-end items-end'>
-                    <button onClick={() => handleAddToCart(menuFood)} className='btn btn-xs'>Add to Cart</button>
+                    <button onClick={() => handleAddToCart(menuFood)} className='btn btn-xs btn-accent text-white'>Add to Cart</button>
                     {/* <button onClick={() => handleProductDetails(_id)} className='btn btn-xs'>View Details</button> */}
                 </div>
             </div>

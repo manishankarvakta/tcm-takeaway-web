@@ -27,7 +27,7 @@ const NewFoodModal = ({ openModal, setOpenModal }) => {
                         </div>
                         <div className='w-1/2'>
                             <h1 className='font-semibold'>{name}</h1>
-                            <button onClick={() => handleAddToCart(openModal)} className='btn btn-xs'>Add to Cart</button>
+                            <button onClick={() => handleAddToCart(openModal)} className='btn btn-accent btn-xs text-white'>Add to Cart</button>
                         </div>
                     </div>
                 </label>
