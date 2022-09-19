@@ -32,7 +32,7 @@ const ViewNewCart = () => {
     return (
         <div>
             <div className='flex justify-between'>
-                <h1>Total Items:{myNewItems.length}</h1>
+                <h1>Total Items: {myNewItems.length}</h1>
                 <div onClick={() => handleRemoveAllItems()} className='flex items-center hover:text-red-600 hover:cursor-pointer text-sm'>
                     <p>Remove All</p>
                     <TrashIcon className='h-4 w-4'></TrashIcon>

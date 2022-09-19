@@ -10,7 +10,7 @@ module.exports = {
         tcmThemes: {
           primary: "#FBF9FA",
           secondary: "#FD0054",
-          accent: "#A80038",
+          accent: "#DA1212",
           neutral: "#2B2024",
           "base-100": "#ffffff",
         },
