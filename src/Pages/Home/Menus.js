@@ -58,7 +58,7 @@ const Menus = ({ setId }) => {
   const loadMenus = () => { };
   return (
     <div className="mb-5 justify-center items-center lg:px-12">
-      <h1 className="font-semibold text-3xl">We Serve</h1>
+      <h1 className="font-semibold text-3xl"><i>We Serve</i></h1>
 
       {/* <div className='flex justify-center items-center'>
 

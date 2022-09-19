@@ -15,19 +15,31 @@ import UpdatePersonalInfo from './Pages/DashBoard/UpdatePersonalInfo';
 import ViewCart from './Pages/Order/ViewCart';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
+import ViewDrawerCart from './Pages/Home/ViewDrawerCart';
 
 
 
 function App() {
+
+  // console.log(openDrawer);
   return (
-    <div className="App">
-      <Navbar></Navbar>
+    <div className="App font-serif">
+      <Navbar
+
+      ></Navbar>
+
       <Routes>
-        <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/home' element={<Home></Home>}></Route>
+
+        <Route path='/' element={<Home
+
+        ></Home>}></Route>
+        <Route path='/home' element={<Home
+
+        ></Home>}></Route>
         <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>
         <Route path='/allproducts' element={<Allproducts></Allproducts>}></Route>
-        <Route path='/viewcart' element={<ViewCart></ViewCart>}></Route>
+        {/* <Route path='/viewcart' element={<ViewCart></ViewCart>}></Route> */}
         <Route path='/aboutus' element={<AboutUs></AboutUs>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<Register></Register>}></Route>
@@ -40,7 +52,10 @@ function App() {
 
       </Routes>
       <ToastContainer></ToastContainer>
+
       <Footer></Footer>
+
+
 
     </div>
   );

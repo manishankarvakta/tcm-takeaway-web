@@ -86,7 +86,6 @@ const MyItems = ({ myNewItem, removeFoodFromCart }) => {
                         <button onClick={() => removeFoodFromCart(myNewItem)} className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</button>
 
                     </div>
-                    {/* <TrashIcon onClick={() => handleRemoveItemFromCart(myNewItem)} className='h-6 w-6'></TrashIcon> */}
 
                 </div>
             </div>

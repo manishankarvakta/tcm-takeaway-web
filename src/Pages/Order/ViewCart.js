@@ -22,14 +22,14 @@ const ViewCart = () => {
     return (
         <div>
 
-            <div class="container mx-auto mt-10">
+            <div class="container lg:mx-auto mt-10">
                 <div class="flex justify-center items-center shadow-md my-10">
                     <div class="lg:w-3/4 bg-white lg:px-10 lg:py-10 sm:w-full sm:px-2 sm:py-2">
 
                         <div class="flex justify-between border-b pb-8">
-                            <h1 class="font-semibold text-2xl">Food Cart</h1>
-                            <h2 class="font-semibold text-2xl">Total Items: {myNewItems.length}</h2>
-                            <div onClick={() => handleRemoveAllItems()} className='flex hover:text-red-600 hover:cursor-pointer'>
+
+                            <h2 class="font-semibold lg:text-2xl sm:text-lg">Total Items: {myNewItems.length}</h2>
+                            <div onClick={() => handleRemoveAllItems()} className='flex items-center hover:text-red-600 hover:cursor-pointer lg:text-2xl sm:text-lg'>
                                 <p>Remove All</p>
                                 <TrashIcon className='h-6 w-6'></TrashIcon>
                             </div>
@@ -37,9 +37,9 @@ const ViewCart = () => {
                         </div>
                         <div class="flex mt-10 mb-5">
                             <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
-                            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
-                            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
-                            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+                            <h3 class="font-semibold text-left text-gray-600 text-xs uppercase w-1/5">Quantity</h3>
+                            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">Price</h3>
+                            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Total</h3>
                         </div>
                         {
 

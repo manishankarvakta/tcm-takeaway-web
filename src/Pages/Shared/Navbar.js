@@ -4,6 +4,8 @@ import { ShoppingCartIcon, BeakerIcon } from '@heroicons/react/24/solid';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
+import { getStoredCart } from '../../hooks/localStorageCart3';
+import { useState } from 'react';
 
 const Navbar = () => {
     const [user] = useAuthState(auth);
@@ -13,15 +15,33 @@ const Navbar = () => {
 
     };
 
+    const getCart = getStoredCart();
+
     const navigate = useNavigate();
 
-    const navigateToVeiwCart = () => {
-        navigate('/viewcart')
+    const [totalFoods, setTotalFood] = useState([])
+
+    // React.useEffect(() => {
+    //     window.addEventListener('storage', () => {
+    //         const data = localStorage.getItem('food-cart')
+    //         console.log(data);
+    //         setTotalFood(data)
+    //         console.log(totalFoods.length)
+
+    //     })
+    // }, []);
+
+
+    const navigateToViewCart = () => {
+        // navigate('/viewcart')
+
+        // console.log(openDrawer)
+
     }
 
 
     return (
-        <div className="navbar bg-base-100 bg-slate-300">
+        <div className="navbar bg-base-100 bg-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -56,8 +76,19 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <ShoppingCartIcon onClick={() => navigateToVeiwCart()} className="h-6 w-6 text-black hover:cursor-pointer"
-                ></ShoppingCartIcon>
+                {/* <div>
+                    <ShoppingCartIcon onClick={() => navigateToViewCart()} className="h-6 w-6 text-black hover:cursor-pointer"
+                    ></ShoppingCartIcon>
+                    <div className="absolute right-0 top-0 rounded-full bg-red-600 w-4 h-4 top right p-0 m-0 text-white font-mono text-sm  leading-tight text-center">5</div>
+                </div> */}
+                <span class="relative inline-block">
+                    <label htmlFor="my-drawer-4" className="drawer-button">
+                        <ShoppingCartIcon onClick={() => navigateToViewCart()} className="h-6 w-6 text-black hover:cursor-pointer"
+                        ></ShoppingCartIcon>
+                    </label>
+
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">{getCart.length}</span>
+                </span>
 
                 {
                     user ? <button className="btn btn-ghost" onClick={logout} >Sign Out</button> : <Link to='/login'><p className='px-4 font-semibold'>Log In</p></Link>

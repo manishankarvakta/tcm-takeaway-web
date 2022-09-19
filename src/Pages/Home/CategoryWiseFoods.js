@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CategoryWiseFood from './CategoryWiseFood';
 import FoodDetailsModal from './FoodDetailsModal';
+import NewFoodModal from './NewFoodModal';
 
 const CategoryWiseFoods = ({ id }) => {
     const [menuFoods, setMenuFoods] = useState([]);
@@ -16,7 +17,7 @@ const CategoryWiseFoods = ({ id }) => {
     }, [id])
 
     return (
-        <div className='grid sm:grid-cols-1 lg:grid-cols-5 gap-12 drop-shadow-md justify-items-center items-center pt-5 px-16'>
+        <div className='grid sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-12 drop-shadow-md justify-items-center items-center pt-5 px-16'>
             {
                 menuFoods?.length > 0 ?
                     menuFoods?.map(menuFood =>
@@ -30,11 +31,17 @@ const CategoryWiseFoods = ({ id }) => {
                     :
                     <></>
             }
-            {
+            {/* {
                 openModal && <FoodDetailsModal
                     openModal={openModal}
                     setOpenModal={setOpenModal}
                 ></FoodDetailsModal>
+            } */}
+            {
+                openModal && <NewFoodModal
+                    openModal={openModal}
+                    setOpenModal={setOpenModal}
+                ></NewFoodModal>
             }
 
         </div>
