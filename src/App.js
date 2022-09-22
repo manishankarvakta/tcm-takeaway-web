@@ -16,19 +16,17 @@ import ViewCart from './Pages/Order/ViewCart';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createContext, useState } from 'react';
-import ViewDrawerCart from './Pages/Home/ViewDrawerCart';
-import { getStoredCart } from './hooks/localStorageCart3';
+
 
 
 export const CountContext = createContext([]);
-export const FoodCountContext = createContext([]);
+
 
 function App() {
 
   const [nav, setNav] = useState([])
 
   const [cartCount, setCartCount] = useState(0);
-  const [foodCount, setFoodCount] = useState(1);
 
 
   return (
@@ -37,23 +35,17 @@ function App() {
         <Navbar
           nav={nav}
         ></Navbar>
-
-
         <Routes>
-          {/* <FoodCountContext.Provider value={[foodCount, setFoodCount]}> */}
-          <Route path='/' element={<Home
-            setNav={setNav}
-          ></Home>}></Route>
-          <Route path='/home' element={<Home></Home>}></Route>
 
           <Route path='/' element={<Home
             setNav={setNav}
           ></Home>}></Route>
           <Route path='/home' element={<Home></Home>}></Route>
 
-          {/* </FoodCountContext.Provider> */}
-
-
+          <Route path='/' element={<Home
+            setNav={setNav}
+          ></Home>}></Route>
+          <Route path='/home' element={<Home></Home>}></Route>
           <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>
           <Route path='/allproducts' element={<Allproducts></Allproducts>}></Route>
           {/* <Route path='/viewcart' element={<ViewCart></ViewCart>}></Route> */}

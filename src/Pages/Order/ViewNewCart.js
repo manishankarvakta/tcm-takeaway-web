@@ -6,9 +6,7 @@ import { deleteFoodCart, getStoredCart, removeFromDb } from '../../hooks/localSt
 import ViewNewCartItems from './ViewNewCartItems';
 
 const ViewNewCart = () => {
-    const [foodCount, setFoodCount] = useContext(FoodCountContext)
 
-    const [newCount, setNewCount] = useState([]);
     const myNewItems = getStoredCart();
     // console.log(myNewItems)
     // setMynewItems(myItems)
