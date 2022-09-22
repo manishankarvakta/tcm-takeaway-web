@@ -8,22 +8,18 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart }) => {
 
     const [count, setCount] = useState(1);
     const previousQuantity = myNewItem.qty;
-    console.log(previousQuantity);
+    // console.log(previousQuantity);
+
     useEffect(() => {
         setCount(previousQuantity)
     }, [])
-    // setCount(previousQuantity)
+
 
     const handleAddition = (myNewItem) => {
         const { id } = myNewItem;
-        // console.log(id)
         const addProduct = addToDb(myNewItem);
-        // console.log(addProduct)
         const restItem = addProduct.find((p) => p.id === id);
-        // console.log(restItem.qty)
         setCount(restItem.qty)
-
-
     }
     const handleSubtraction = (menuFood) => {
         const { id } = myNewItem;
@@ -50,7 +46,7 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart }) => {
                     <div>
                         <h2 className="text-center font-bold text-sm">{myNewItem?.name}</h2>
 
-                        <p className='text-center text-xs'>Price: {myNewItem.priceList[0].mrp}</p>
+                        <p className='text-center text-xs'>Price: {myNewItem.priceList[0].mrp * count}</p>
                         <div className='flex justify-center items-center space-x-4 mb-2'>
                             {
                                 count > 1 ? <MinusCircleIcon onClick={() => handleSubtraction(myNewItem)} className='h-6 w-6'></MinusCircleIcon> : <MinusCircleIcon className='h-6 w-6'></MinusCircleIcon>

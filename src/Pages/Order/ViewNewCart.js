@@ -21,6 +21,7 @@ const ViewNewCart = () => {
 
     }
     const [items, setItems] = useState([]);
+    const [totalSum, setTotalSum] = useState(0)
 
     useEffect(() => {
         const items = JSON.parse(localStorage.getItem('food_cart'));
@@ -29,6 +30,30 @@ const ViewNewCart = () => {
         }
     }, []);
     // console.log(items)
+
+    const totalCalculation = (myNewItems) => {
+        // console.log(myNewItems)
+        let sum = 0;
+        const totalCalculation2 = myNewItems?.map(items =>
+            sum = (items.qty * items.priceList[0].mrp)
+            // console.log(items.qty * items.priceList[0].mrp)
+
+        )
+
+        const total = totalCalculation2.reduce((partialSum, a) => partialSum + a, 0);
+        // console.log(total)
+        return total
+
+    }
+    const total = totalCalculation(myNewItems);
+
+    useEffect(() => {
+        setTotalSum(total);
+    }, [myNewItems])
+
+    console.log(total)
+
+
 
     return (
         <div>
@@ -56,6 +81,12 @@ const ViewNewCart = () => {
 
 
             </div>
+            <div className="divider"></div>
+            <div className='flex justify-between items-center'>
+                <p className='text-xs font-semibold'>Total</p>
+                <p className='text-sm'>{totalSum}</p>
+            </div>
+
 
         </div>
     );

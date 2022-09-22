@@ -35,7 +35,7 @@ const Navbar = ({ nav }) => {
 
 
     return (
-        <div className="navbar bg-base-100 bg-white">
+        <div className="navbar bg-base-100 bg-white font-sans">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -43,7 +43,7 @@ const Navbar = ({ nav }) => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {/* <li className='font-semibold'><Link to='/allproducts'>All Items</Link></li> */}
-                        <li className='font-semibold'><Link to='/aboutus'>About us</Link></li>
+                        {/* <li className='font-semibold'><Link to='/aboutus'>About us</Link></li> */}
                         {/* <li className='font-semibold'><Link to='/dashboard'>DashBoard</Link></li> */}
                         <li tabIndex={0}>
                             <Link to='/dashboard' className="justify-between">
@@ -65,7 +65,7 @@ const Navbar = ({ nav }) => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
                     {/* <li className='font-semibold'><Link to='/allproducts'>All Items</Link></li> */}
-                    <li className='font-semibold'><Link to='/aboutus'>About us</Link></li>
+                    {/* <li className='font-semibold'><Link to='/aboutus'>About us</Link></li> */}
                     <li className='font-semibold'><Link to='/dashboard'>DashBoard</Link></li>
                 </ul>
             </div>
