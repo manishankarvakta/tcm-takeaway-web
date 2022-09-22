@@ -30,7 +30,7 @@ const ViewNewCart = () => {
             setItems(items);
         }
     }, []);
-    console.log(items)
+    // console.log(items)
 
     return (
         <div>

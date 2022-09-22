@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { PlusCircleIcon, MinusCircleIcon, MinusIcon } from '@heroicons/react/24/solid';
 import { addToDb, getStoredCart, removeQuantity } from '../../hooks/localStorageCart3';
-import { FoodCountContext } from '../../App';
+import { useEffect } from 'react';
+
 
 const ViewNewCartItems = ({ myNewItem, removeFoodFromCart }) => {
 
-    const [foodCount, setFoodCount] = useContext(FoodCountContext);
-
     const [count, setCount] = useState(1);
-    const getData = getStoredCart()
-    console.log(getData)
-    const selectedItem = getData.find((p) => p.id === myNewItem.id);
-    console.log(selectedItem.qty)
-    // setCount(selectedItem.qty)
+    const previousQuantity = myNewItem.qty;
+    console.log(previousQuantity);
+    useEffect(() => {
+        setCount(previousQuantity)
+    }, [])
+    // setCount(previousQuantity)
 
     const handleAddition = (myNewItem) => {
         const { id } = myNewItem;
