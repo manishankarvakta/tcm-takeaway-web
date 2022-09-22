@@ -1,9 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addToCart, addToDb } from '../../hooks/localStorageCart3';
+import { addToCart, addToDb, getStoredCart } from '../../hooks/localStorageCart3';
 import { toast } from 'react-toastify';
+import Navbar from '../Shared/Navbar';
+import { useContext } from 'react';
+import { CountContext } from '../../App';
 
-const CategoryWiseFood = ({ menuFood, setOpenModal }) => {
+const CategoryWiseFood = ({ menuFood, setOpenModal, setNav }) => {
+
+    const [cartCount, setCartCount] = useContext(CountContext)
     const { ean, name, _id, priceList } = menuFood;
     const navigate = useNavigate();
 
@@ -13,10 +18,9 @@ const CategoryWiseFood = ({ menuFood, setOpenModal }) => {
     const handleAddToCart = (id) => {
         const { _id } = menuFood;
         const addProduct = addToCart(menuFood);
-        // console.log(addProduct)
-        // const restItem = addProduct.find((p) => p.id === _id);
-        // console.log(restItem.qty)
-        // window.location.reload();
+        const getCart = getStoredCart()
+        setNav(getCart)
+        setCartCount(getCart?.length)
         toast("Your Item is added to your cart");
 
     }

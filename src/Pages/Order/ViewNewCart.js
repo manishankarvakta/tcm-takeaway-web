@@ -1,10 +1,13 @@
 import { TrashIcon } from '@heroicons/react/24/solid';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
+import { FoodCountContext } from '../../App';
 import { deleteFoodCart, getStoredCart, removeFromDb } from '../../hooks/localStorageCart3';
 import ViewNewCartItems from './ViewNewCartItems';
 
 const ViewNewCart = () => {
+    const [foodCount, setFoodCount] = useContext(FoodCountContext)
+
     const [newCount, setNewCount] = useState([]);
     const myNewItems = getStoredCart();
     // console.log(myNewItems)
@@ -45,6 +48,7 @@ const ViewNewCart = () => {
                             <ViewNewCartItems
                                 myNewItem={myNewItem}
                                 removeFoodFromCart={removeFoodFromCart}
+
                             ></ViewNewCartItems>
 
                         )

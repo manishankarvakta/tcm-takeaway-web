@@ -8,6 +8,11 @@ const getStoredCart = () => {
 
     return foodCart;
 };
+const updateCart = () => {
+    const loadCart = getStoredCart();
+    return loadCart;
+
+}
 
 const addToCart = (food) => {
     let foodCart = [];
@@ -53,6 +58,7 @@ const addToCart = (food) => {
     // console.log("Food cart:", foodCart);
 
     localStorage.setItem("food_cart", JSON.stringify(foodCart));
+    updateCart();
     return foodCart;
 
 }
@@ -102,6 +108,7 @@ const addToDb = (food) => {
     // console.log("Food cart:", foodCart);
 
     localStorage.setItem("food_cart", JSON.stringify(foodCart));
+
     return foodCart;
 };
 const removeQuantity = (food) => {
@@ -154,6 +161,7 @@ export {
     removeQuantity,
     removeFromDb,
     addToCart,
-    deleteFoodCart
+    deleteFoodCart,
+    updateCart,
 
 }

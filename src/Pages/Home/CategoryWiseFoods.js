@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import CategoryWiseFood from './CategoryWiseFood';
 import FoodDetailsModal from './FoodDetailsModal';
 import NewFoodModal from './NewFoodModal';
+import Loading from '../Shared/Loading'
 
-const CategoryWiseFoods = ({ id }) => {
+const CategoryWiseFoods = ({ id, setNav }) => {
     const [menuFoods, setMenuFoods] = useState([]);
     const [openModal, setOpenModal] = useState(null);
     const [count, setCount] = useState(0);
@@ -25,11 +26,15 @@ const CategoryWiseFoods = ({ id }) => {
                             key={menuFood._id}
                             menuFood={menuFood}
                             setOpenModal={setOpenModal}
+                            setNav={setNav}
                         ></CategoryWiseFood>
 
                     )
                     :
-                    <></>
+                    <>
+                        <p>Coming Soon.........</p>
+
+                    </>
             }
             {/* {
                 openModal && <FoodDetailsModal

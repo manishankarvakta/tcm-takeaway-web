@@ -5,7 +5,7 @@ import Banner from './Banner';
 import CategoryWiseFoods from './CategoryWiseFoods';
 import Menus from './Menus';
 
-const ViewDrawerCart = () => {
+const ViewDrawerCart = ({ setNav }) => {
     const getCartData = getStoredCart();
     const [id, setId] = useState('632034faef40a0aafbee12f9')
     return (
@@ -19,14 +19,18 @@ const ViewDrawerCart = () => {
                     {/* <MenuSelectedFoods
                 id={id}
             ></MenuSelectedFoods> */}
-                    <CategoryWiseFoods id={id}></CategoryWiseFoods>
+                    <CategoryWiseFoods
+                        id={id}
+                        setNav={setNav}
+                    ></CategoryWiseFoods>
                     {/* <label htmlFor="my-drawer-4" className="drawer-button btn btn-primary">Open drawer</label> */}
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
                     <div className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content ">
 
-                        <ViewNewCart></ViewNewCart>
+                        <ViewNewCart
+                        ></ViewNewCart>
                     </div>
                 </div>
             </div>

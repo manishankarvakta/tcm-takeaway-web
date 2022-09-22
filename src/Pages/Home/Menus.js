@@ -29,13 +29,13 @@ const Menus = ({ setId }) => {
   // };
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     lazyLoad: true,
     autoplay: false,
     autoplaySpeed: 3000,
     slidesToShow: 8,
-    slidesToScroll: 6,
+    slidesToScroll: 3,
     prevArrow: (
       <ArrowLeftCircleIcon className="h-5 w-5 fill-black cursor-pointer" />
     ),
@@ -58,7 +58,7 @@ const Menus = ({ setId }) => {
   const loadMenus = () => { };
   return (
     <div className="mb-5 justify-center items-center lg:px-12">
-      <h1 className="font-semibold text-3xl"><i>We Serve</i></h1>
+      <h1 className="font-semibold text-3xl"><i>Categories</i></h1>
 
       {/* <div className='flex justify-center items-center'>
 

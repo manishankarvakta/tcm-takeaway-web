@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartIcon, BeakerIcon } from '@heroicons/react/24/solid';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
-import { getStoredCart } from '../../hooks/localStorageCart3';
+import { getStoredCart, updateCart } from '../../hooks/localStorageCart3';
 import { useState } from 'react';
+import { CountContext } from '../../App';
 
-const Navbar = () => {
+const Navbar = ({ nav }) => {
     const [user] = useAuthState(auth);
 
     const logout = () => {
@@ -15,23 +16,16 @@ const Navbar = () => {
 
     };
 
-    const getCart = getStoredCart();
+    const getCart = updateCart();
 
     const navigate = useNavigate();
 
     const [totalFoods, setTotalFood] = useState([])
 
-    // React.useEffect(() => {
-    //     window.addEventListener('storage', () => {
-    //         const data = localStorage.getItem('food-cart')
-    //         console.log(data);
-    //         setTotalFood(data)
-    //         console.log(totalFoods.length)
+    const [cartCount, setCartCount] = useContext(CountContext)
 
-    //     })
-    // }, []);
-
-
+    const getLocalData = getStoredCart();
+    setCartCount(getLocalData.length)
     const navigateToViewCart = () => {
         // navigate('/viewcart')
 
@@ -87,14 +81,12 @@ const Navbar = () => {
                         ></ShoppingCartIcon>
                     </label>
 
-                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">{getCart.length}</span>
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">{cartCount}</span>
                 </span>
 
                 {
                     user ? <button className="btn btn-ghost" onClick={logout} >Sign Out</button> : <Link to='/login'><p className='px-4 font-semibold'>Log In</p></Link>
                 }
-
-
 
             </div>
         </div >

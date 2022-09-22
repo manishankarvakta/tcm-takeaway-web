@@ -8,12 +8,14 @@ import ViewDrawerCart from './ViewDrawerCart';
 import { getStoredCart } from '../../hooks/localStorageCart3';
 
 
-const Home = () => {
+const Home = ({ setNav }) => {
 
 
     return (
         <div className='overflow-x-hidden'>
-            <ViewDrawerCart />
+            <ViewDrawerCart
+                setNav={setNav}
+            ></ViewDrawerCart>
 
 
         </div >

@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { PlusCircleIcon, MinusCircleIcon, MinusIcon } from '@heroicons/react/24/solid';
-import { addToDb, removeQuantity } from '../../hooks/localStorageCart3';
+import { addToDb, getStoredCart, removeQuantity } from '../../hooks/localStorageCart3';
+import { FoodCountContext } from '../../App';
 
 const ViewNewCartItems = ({ myNewItem, removeFoodFromCart }) => {
+
+    const [foodCount, setFoodCount] = useContext(FoodCountContext);
+
     const [count, setCount] = useState(1);
-    // console.log(myNewItem)
-
-    // console.log(myNewItem.qty)
-    // setCount(myNewItem.qty) // ai line er jnno error ase
-
+    const getData = getStoredCart()
+    console.log(getData)
+    const selectedItem = getData.find((p) => p.id === myNewItem.id);
+    console.log(selectedItem.qty)
+    // setCount(selectedItem.qty)
 
     const handleAddition = (myNewItem) => {
         const { id } = myNewItem;
