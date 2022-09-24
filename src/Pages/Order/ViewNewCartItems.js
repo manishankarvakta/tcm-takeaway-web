@@ -24,16 +24,16 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart }) => {
     const handleSubtraction = (menuFood) => {
         const { id } = myNewItem;
         const removeProductQty = removeQuantity(menuFood)
-        // console.log(removeProductQty)
+
         const restItem = removeProductQty.find((p) => p.id === id);
-        // console.log(restItem)
+
         if (restItem === 'undefined') {
             setCount(1)
         }
         else {
             setCount(restItem?.qty)
         }
-        // setCount(restItem?.qty)
+
     }
 
     return (
