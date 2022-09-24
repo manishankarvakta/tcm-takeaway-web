@@ -1,11 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
 
 
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
@@ -15,6 +16,11 @@ const Login = () => {
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
+
+    }
+
+    if (user || gUser || fuser) {
+        navigate('/')
     }
 
     let signInError;
@@ -81,7 +87,7 @@ const Login = () => {
 
                         <input className='btn w-full max-w-xs text-white' type="submit" value="Login" />
                     </form>
-                    <p><small>New to TCM ? <Link className='text-primary' to="/signup">Create New Account</Link></small></p>
+                    <p><small>New to TCM ? <Link className='text-accent' to="/signup">Create New Account</Link></small></p>
                     <div className="divider">OR</div>
                     {signInError}
                     <button

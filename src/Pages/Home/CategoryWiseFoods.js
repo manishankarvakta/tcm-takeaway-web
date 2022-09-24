@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { getStoredCart } from '../../hooks/localStorageCart3';
+import CategoryWiseFood from './CategoryWiseFood';
 import FoodDetailsModal from './FoodDetailsModal';
-import MenuSelectedFood from './MenuSelectedFood';
+import NewFoodModal from './NewFoodModal';
+import Loading from '../Shared/Loading'
 
-const MenuSelectedFoods = ({ id }) => {
-    // console.log(id)
+const CategoryWiseFoods = ({ id, setNav }) => {
     const [menuFoods, setMenuFoods] = useState([]);
     const [openModal, setOpenModal] = useState(null);
     const [count, setCount] = useState(0);
-
-    // const [showModal, setShowModal] = useState(false);
-
-    // useEffect(() => {
-    //     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
-    //         .then(res => res.json())
-    //         .then(result => setMenuFoods(result.meals))
-    // }, [])
 
     useEffect(() => {
         const url = `https://pos-api-v1.herokuapp.com/api/product/category/${id}`
@@ -25,35 +17,40 @@ const MenuSelectedFoods = ({ id }) => {
             .then(result => setMenuFoods(result))
     }, [id])
 
-    // console.log(menuFoods)
-
-    // const foodItems = getStoredCart();
-    // console.log(foodItems)
-
-
     return (
-        <div className='grid sm:grid-cols-1 lg:grid-cols-5 gap-12 drop-shadow-md justify-items-center items-center pt-5 px-16'>
+        <div className='grid sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-12 drop-shadow-md justify-items-center items-center pt-5 px-16'>
             {
                 menuFoods?.length > 0 ?
                     menuFoods?.map(menuFood =>
-                        <MenuSelectedFood
+                        <CategoryWiseFood
+                            key={menuFood._id}
                             menuFood={menuFood}
                             setOpenModal={setOpenModal}
-                        ></MenuSelectedFood>
-                        // console.log(menuFood.strMeal)
+                            setNav={setNav}
+                        ></CategoryWiseFood>
+
                     )
                     :
-                    <></>
-            }
+                    <>
+                        <p>Coming Soon.........</p>
 
-            {
+                    </>
+            }
+            {/* {
                 openModal && <FoodDetailsModal
                     openModal={openModal}
                     setOpenModal={setOpenModal}
                 ></FoodDetailsModal>
+            } */}
+            {
+                openModal && <NewFoodModal
+                    openModal={openModal}
+                    setOpenModal={setOpenModal}
+                ></NewFoodModal>
             }
-        </div >
+
+        </div>
     );
 };
 
-export default MenuSelectedFoods;
+export default CategoryWiseFoods;

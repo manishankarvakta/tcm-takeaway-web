@@ -1,12 +1,14 @@
 import React from 'react';
-import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const Register = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
     const [
         createUserWithEmailAndPassword,
         user,
@@ -16,16 +18,32 @@ const Register = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, fuser, floading, ferror] = useSignInWithFacebook(auth);
 
+    const [sendEmailVerification, sending, verror] = useSendEmailVerification(
+        auth
+    );
+
 
 
     const onSubmit = async data => {
-        await createUserWithEmailAndPassword(data.email, data.password);
-        console.log('update done');
+        const validEmail = await sendEmailVerification();
+        if (validEmail) {
+            await createUserWithEmailAndPassword(data.email, data.password);
+            toast('Email is Verified')
+        } else {
+            toast('Please Enter Valid Email')
+        }
+
+
+
+    }
+
+    if (user || gUser || fuser) {
+        navigate('/')
     }
 
 
     let signInError;
-    if (error || gError || ferror) {
+    if (error || gError || ferror || verror) {
         signInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
     }
 
@@ -109,7 +127,7 @@ const Register = () => {
 
                             <input className='btn w-full max-w-xs text-white' type="submit" value="Sign Up" />
                         </form>
-                        <p><small>Already have an account? <Link className='text-primary' to="/login">Please login</Link></small></p>
+                        <p><small>Already have an account? <Link className='text-accent' to="/login">Please login</Link></small></p>
                         <div className="divider">OR</div>
                         {signInError}
                         <button

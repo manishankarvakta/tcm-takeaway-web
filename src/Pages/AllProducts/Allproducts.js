@@ -6,9 +6,9 @@ const Allproducts = () => {
     const [openModal, setOpenModal] = useState(null);
 
     useEffect(() => {
-        fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+        fetch('https://pos-api-v1.herokuapp.com/api/product/category/632041d1a4dc0dfbfc32d7c1')
             .then(res => res.json())
-            .then(result => setMenuFoods(result.meals))
+            .then(result => setMenuFoods(result))
     }, [])
 
     return (
@@ -20,7 +20,7 @@ const Allproducts = () => {
                             menuFood={menuFood}
                             setOpenModal={setOpenModal}
                         ></MenuSelectedFood>
-                        // console.log(menuFood.strMeal)
+
                     )
                     :
                     <></>

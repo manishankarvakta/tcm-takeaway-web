@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import Banner from './Banner';
+import CategoryWiseFoods from './CategoryWiseFoods';
 import Menus from './Menus';
 import MenuSelectedFoods from './MenuSelectedFoods';
+import 'react-toastify/dist/ReactToastify.css';
+import ViewDrawerCart from './ViewDrawerCart';
+import { getStoredCart } from '../../hooks/localStorageCart3';
 
 
-const Home = () => {
-    const [id, setId] = useState('632034faef40a0aafbee12f9')
+const Home = ({ setNav }) => {
+
+
     return (
-        <div>
-            <Banner></Banner>
-            <Menus setId={setId}></Menus>
-            <MenuSelectedFoods
-                id={id}
-            ></MenuSelectedFoods>
+        <div className='overflow-x-hidden'>
+            <ViewDrawerCart
+                setNav={setNav}
+            ></ViewDrawerCart>
+
+
         </div >
     );
 };

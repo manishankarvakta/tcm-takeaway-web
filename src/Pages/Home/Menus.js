@@ -35,7 +35,7 @@ const Menus = ({ setId }) => {
     autoplay: false,
     autoplaySpeed: 3000,
     slidesToShow: 8,
-    slidesToScroll: 6,
+    slidesToScroll: 3,
     prevArrow: (
       <ArrowLeftCircleIcon className="h-5 w-5 fill-black cursor-pointer" />
     ),
@@ -55,10 +55,10 @@ const Menus = ({ setId }) => {
     ],
   };
 
-  const loadMenus = () => {};
+  const loadMenus = () => { };
   return (
     <div className="mb-5 justify-center items-center lg:px-12">
-      <h1 className="font-semibold text-3xl">We Serve</h1>
+      <h1 className="font-semibold text-3xl"><i>Categories</i></h1>
 
       {/* <div className='flex justify-center items-center'>
 
