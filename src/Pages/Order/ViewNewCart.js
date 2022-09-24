@@ -1,6 +1,7 @@
 import { TrashIcon } from '@heroicons/react/24/solid';
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FoodCountContext } from '../../App';
 import { deleteFoodCart, getStoredCart, removeFromDb } from '../../hooks/localStorageCart3';
 import ViewNewCartItems from './ViewNewCartItems';
@@ -8,6 +9,7 @@ import ViewNewCartItems from './ViewNewCartItems';
 const ViewNewCart = () => {
 
     const myNewItems = getStoredCart();
+    const navigate = useNavigate()
     // console.log(myNewItems)
     // setMynewItems(myItems)
     const removeFoodFromCart = (menuFood) => {
@@ -31,8 +33,10 @@ const ViewNewCart = () => {
     }, []);
     // console.log(items)
 
-    const totalCalculation = (myNewItems) => {
-        // console.log(myNewItems)
+
+
+    const totalCalculation = (myNewItems = { myNewItems }) => {
+        console.log(myNewItems)
         let sum = 0;
         const totalCalculation2 = myNewItems?.map(items =>
             sum = (items.qty * items.priceList[0].mrp)
@@ -40,19 +44,25 @@ const ViewNewCart = () => {
 
         )
 
-        const total = totalCalculation2.reduce((partialSum, a) => partialSum + a, 0);
+        const total = totalCalculation2.reduce((totalSummation, a) => totalSummation + a, 0);
         // console.log(total)
         return total
 
     }
+
     const total = totalCalculation(myNewItems);
 
     useEffect(() => {
         setTotalSum(total);
     }, [myNewItems])
 
+
+
     console.log(total)
 
+    const navigateToOrderConfirmationPage = () => {
+        navigate('/orderConfirmation')
+    }
 
 
     return (
@@ -71,6 +81,8 @@ const ViewNewCart = () => {
                             <ViewNewCartItems
                                 myNewItem={myNewItem}
                                 removeFoodFromCart={removeFoodFromCart}
+                                totalCalculation={totalCalculation}
+                                setTotalSum={setTotalSum}
 
                             ></ViewNewCartItems>
 
@@ -86,6 +98,8 @@ const ViewNewCart = () => {
                 <p className='text-xs font-semibold'>Total</p>
                 <p className='text-sm'>{totalSum}</p>
             </div>
+
+            <button onClick={() => navigateToOrderConfirmationPage()} className='btn bg-gradient-to-tr from-red-500 to-red-700 border-none text-white'>Check out</button>
 
 
         </div>

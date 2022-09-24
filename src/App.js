@@ -16,6 +16,7 @@ import ViewCart from './Pages/Order/ViewCart';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createContext, useState } from 'react';
+import OrderConfirm from './Pages/OrderConfirm/OrderConfirm';
 
 
 
@@ -41,11 +42,7 @@ function App() {
             setNav={setNav}
           ></Home>}></Route>
           <Route path='/home' element={<Home></Home>}></Route>
-
-          <Route path='/' element={<Home
-            setNav={setNav}
-          ></Home>}></Route>
-          <Route path='/home' element={<Home></Home>}></Route>
+          <Route path='/orderConfirmation' element={<OrderConfirm></OrderConfirm>}></Route>
           <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>
           <Route path='/allproducts' element={<Allproducts></Allproducts>}></Route>
           {/* <Route path='/viewcart' element={<ViewCart></ViewCart>}></Route> */}

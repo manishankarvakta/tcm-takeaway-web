@@ -4,7 +4,7 @@ import { addToDb, getStoredCart, removeQuantity } from '../../hooks/localStorage
 import { useEffect } from 'react';
 
 
-const ViewNewCartItems = ({ myNewItem, removeFoodFromCart }) => {
+const ViewNewCartItems = ({ myNewItem, removeFoodFromCart, totalCalculation, setTotalSum }) => {
 
     const [count, setCount] = useState(1);
     const previousQuantity = myNewItem.qty;
@@ -20,6 +20,11 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart }) => {
         const addProduct = addToDb(myNewItem);
         const restItem = addProduct.find((p) => p.id === id);
         setCount(restItem.qty)
+
+        const data = getStoredCart()
+        // totalCalculation(data);
+        const total = totalCalculation(data);
+        setTotalSum(total)
     }
     const handleSubtraction = (menuFood) => {
         const { id } = myNewItem;
@@ -34,6 +39,10 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart }) => {
             setCount(restItem?.qty)
         }
 
+        const data = getStoredCart()
+        // totalCalculation(data);
+        const total = totalCalculation(data);
+        setTotalSum(total)
     }
 
     return (
