@@ -4,7 +4,6 @@ import Navbar from './Pages/Shared/Navbar';
 import { Routes, Route, Link } from "react-router-dom";
 import ProductDetails from './Pages/Product/ProductDetails';
 import Allproducts from './Pages/AllProducts/Allproducts';
-import AboutUs from './Pages/AboutUs/AboutUs';
 import Login from './Pages/LogIn/Login';
 import Register from './Pages/LogIn/Register';
 import Footer from './Pages/Shared/Footer';
@@ -17,6 +16,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createContext, useState } from 'react';
 import OrderConfirm from './Pages/OrderConfirm/OrderConfirm';
+import AboutUs from './Pages/FooterPages/AboutUs';
+import Career from './Pages/FooterPages/Career';
+import TermsOfUse from './Pages/FooterPages/TermsOfUse';
+import PrivacyPolicy from './Pages/FooterPages/PrivacyPolicy';
+import ReturnPolicy from './Pages/FooterPages/ReturnPolicy';
 
 
 
@@ -47,6 +51,11 @@ function App() {
           <Route path='/allproducts' element={<Allproducts></Allproducts>}></Route>
           {/* <Route path='/viewcart' element={<ViewCart></ViewCart>}></Route> */}
           <Route path='/aboutus' element={<AboutUs></AboutUs>}></Route>
+          <Route path='/career' element={<Career></Career>}></Route>
+          <Route path='/termsofuse' element={<TermsOfUse></TermsOfUse>}></Route>
+          <Route path='/privacypolicy' element={<PrivacyPolicy></PrivacyPolicy>}></Route>
+          <Route path='/returnpolicy' element={<ReturnPolicy></ReturnPolicy>}></Route>
+
           <Route path='/login' element={<Login></Login>}></Route>
           <Route path='/signup' element={<Register></Register>}></Route>
 

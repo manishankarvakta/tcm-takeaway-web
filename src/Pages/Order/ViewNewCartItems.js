@@ -8,11 +8,12 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart, totalCalculation, set
 
     const [count, setCount] = useState(1);
     const previousQuantity = myNewItem.qty;
-    // console.log(previousQuantity);
+    console.log(previousQuantity);
 
     useEffect(() => {
         setCount(previousQuantity)
-    }, [])
+    }, [myNewItem])
+
 
 
     const handleAddition = (myNewItem) => {

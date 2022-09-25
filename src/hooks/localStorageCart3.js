@@ -32,7 +32,7 @@ const addToCart = (food) => {
             const restItem = storedCart.filter(
                 (p) => p.id !== item.id
             );
-            selectedItem.qty = 1;
+            selectedItem.qty = selectedItem.qty + 1;
             foodCart = [...restItem, selectedItem];
         } else {
 

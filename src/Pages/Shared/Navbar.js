@@ -11,6 +11,7 @@ import { CountContext } from '../../App';
 const Navbar = ({ nav }) => {
     const [user] = useAuthState(auth);
 
+    console.log(user?.displayName)
     const logout = () => {
         signOut(auth);
 
@@ -85,7 +86,7 @@ const Navbar = ({ nav }) => {
                 </span>
 
                 {
-                    user ? <button className="btn btn-ghost" onClick={logout} >Sign Out</button> : <Link to='/login'><p className='px-4 font-semibold'>Log In</p></Link>
+                    user ? <button className="btn btn-ghost" onClick={logout} >{user?.displayName}</button> : <Link to='/login'><p className='px-4 font-semibold'>Log In</p></Link>
                 }
 
             </div>

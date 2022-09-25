@@ -1,6 +1,28 @@
 import React from 'react';
 
+
 const Banner = () => {
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000
+    };
+    // const images = [
+    //     {
+    //         img: 'https://i.ibb.co/1v8zDXS/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden.jpg'
+    //     }
+    //     ,
+    //     {
+    //         img: 'https://i.ibb.co/pXhCdy2/greek-salad-with-fresh-vegetables-feta-cheese-kalamata-olives.jpg'
+    //     },
+    //     {
+    //         img: 'https://i.ibb.co/kq2DZ1M/top-view-circular-food-frame.jpg'
+    //     }
+    // ]
+
     return (
         <div className="hero min-w-full mb-5" style={{ backgroundImage: `url("https://i.ibb.co/h7ChCwy/vegetables-set-left-black-slate.jpg")` }}>
             <div className="hero-overlay"></div>
@@ -12,6 +34,19 @@ const Banner = () => {
                 </div>
             </div>
         </div>
+
+        // <div>
+        //     {images?.length > 0 ? (
+        //         <Slider {...settings}>
+        //             <>
+        //                 {images?.map((image) => console.log(image))}
+        //             </>
+
+        //         </Slider>
+        //     ) : (
+        //         <></>
+        //     )}
+        // </div>
     );
 };
 
