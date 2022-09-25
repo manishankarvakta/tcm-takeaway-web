@@ -16,6 +16,7 @@ const updateCart = () => {
 
 const addToCart = (food) => {
     let foodCart = [];
+    let order = 1
     const storedCart = getStoredCart();
     const { _id, name, priceList } = food;
 
@@ -33,6 +34,7 @@ const addToCart = (food) => {
                 (p) => p.id !== item.id
             );
             selectedItem.qty = selectedItem.qty + 1;
+
             foodCart = [...restItem, selectedItem];
         } else {
 

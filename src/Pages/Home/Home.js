@@ -12,7 +12,7 @@ const Home = ({ setNav }) => {
 
 
     return (
-        <div className='overflow-x-hidden'>
+        <div>
             <ViewDrawerCart
                 setNav={setNav}
             ></ViewDrawerCart>

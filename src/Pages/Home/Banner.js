@@ -1,11 +1,12 @@
 import React from 'react';
+import Slider from 'react-slick';
 
 
 const Banner = () => {
     const settings = {
         dots: true,
         infinite: true,
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000
@@ -36,16 +37,23 @@ const Banner = () => {
         </div>
 
         // <div>
-        //     {images?.length > 0 ? (
-        //         <Slider {...settings}>
-        //             <>
-        //                 {images?.map((image) => console.log(image))}
-        //             </>
 
-        //         </Slider>
-        //     ) : (
-        //         <></>
-        //     )}
+        //     {/* <Slider {...settings}>
+        //         <div>
+        //             <img  src='https://i.ibb.co/h7ChCwy/vegetables-set-left-black-slate.jpg' alt="" />
+        //         </div>
+        //         <div >
+        //             <img src='https://i.ibb.co/1v8zDXS/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden.jpg' alt="" />
+        //         </div>
+        //         <div>
+        //             <img src='https://i.ibb.co/pXhCdy2/greek-salad-with-fresh-vegetables-feta-cheese-kalamata-olives.jpg' alt="" />
+        //         </div>
+        //         <div>
+        //             <img src='https://i.ibb.co/kq2DZ1M/top-view-circular-food-frame.jpg' alt="" />
+        //         </div>
+
+        //     </Slider> */}
+
         // </div>
     );
 };
