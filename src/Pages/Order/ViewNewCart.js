@@ -63,7 +63,7 @@ const ViewNewCart = () => {
     const navigateToOrderConfirmationPage = () => {
         navigate('/orderConfirmation')
     }
-
+    let newCart = myNewItems?.sort((a, b) => b.order - a.order);
 
     return (
         <div>
@@ -76,8 +76,9 @@ const ViewNewCart = () => {
             </div>
             <div className='grid grid-cols-1 gap-12 drop-shadow-md justify-items-center items-center pt-5'>
                 {
-                    myNewItems?.length > 0 ?
-                        myNewItems?.map(myNewItem =>
+
+                    newCart?.length > 0 ?
+                        newCart?.map(myNewItem =>
                             <ViewNewCartItems
                                 myNewItem={myNewItem}
                                 removeFoodFromCart={removeFoodFromCart}

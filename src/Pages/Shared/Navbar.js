@@ -10,6 +10,7 @@ import { CountContext } from '../../App';
 
 const Navbar = ({ nav }) => {
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
     console.log(user?.displayName)
     const logout = () => {
@@ -23,7 +24,7 @@ const Navbar = ({ nav }) => {
     const getLocalData = getStoredCart();
     setCartCount(getLocalData.length)
     const navigateToViewCart = () => {
-        // navigate('/viewcart')
+        navigate('/')
 
         // console.log(openDrawer)
 
@@ -76,23 +77,24 @@ const Navbar = ({ nav }) => {
                         <>
 
                             <div className="dropdown px-6">
-                                <label tabIndex={0}>
+                                <label className='cursor-pointer' tabIndex={0}>
                                     {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg> */}
-                                    {user?.displayName}
+                                    {user?.displayName || 'User'}
                                 </label>
                                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box">
-                                    <li className="btn btn-ghost" onClick={logout}> Logout</li>
+
                                     <li tabIndex={0}>
                                         <Link to='/dashboard' className="justify-between">
                                             DashBoard
                                             {/* <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg> */}
                                         </Link>
                                     </li>
+                                    <li className='cursor-pointer' onClick={logout}>Logout</li>
                                 </ul>
                             </div>
 
 
-                            {/* <button className="btn btn-ghost" onClick={logout} >{user?.displayName}</button> */}
+                            {/* <button className="btn btn-ghost" onClick={logout} >{user?.displayName || 'User'}</button> */}
                         </>
 
                         : <Link to='/login'><p className='px-4 font-semibold'>Log In</p></Link>

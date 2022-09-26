@@ -34,17 +34,18 @@ const addToCart = (food) => {
                 (p) => p.id !== item.id
             );
             selectedItem.qty = selectedItem.qty + 1;
-            // order = order
+
 
             foodCart = [...restItem, selectedItem];
         } else {
-
+            order = storedCart.length + 1
             foodCart = [
                 ...storedCart,
+
                 {
                     ...item,
                     qty: 1,
-                    // order=storedCart.length + 1
+                    order: order
 
                 },
             ];
@@ -55,7 +56,7 @@ const addToCart = (food) => {
             {
                 ...item,
                 qty: 1,
-                // order
+                order: order
             },
         ];
     }
@@ -71,6 +72,7 @@ const addToCart = (food) => {
 
 const addToDb = (food) => {
     let foodCart = [];
+    let order = 1;
     const { id, name, priceList } = food;
 
     const item = {
@@ -91,12 +93,13 @@ const addToDb = (food) => {
             selectedItem.qty = selectedItem.qty + 1;
             foodCart = [...restItem, selectedItem];
         } else {
-
+            order = storedCart.length + 1
             foodCart = [
                 ...storedCart,
                 {
                     ...item,
-                    qty: 1
+                    qty: 1,
+                    order: order
                 },
             ];
         }
@@ -105,7 +108,8 @@ const addToDb = (food) => {
             ...foodCart,
             {
                 ...item,
-                qty: 1
+                qty: 1,
+                order: 1
             },
         ];
     }

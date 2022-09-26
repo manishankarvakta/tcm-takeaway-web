@@ -25,15 +25,16 @@ const Register = () => {
 
 
     const onSubmit = async data => {
-        const validEmail = await sendEmailVerification();
-        if (validEmail) {
-            await createUserWithEmailAndPassword(data.email, data.password);
-            toast('Email is Verified')
-        } else {
-            toast('Please Enter Valid Email')
-        }
+        // const validEmail = await sendEmailVerification();
+        // if (validEmail) {
+        //     await createUserWithEmailAndPassword(data.email, data.password);
+        //     toast('Email is Verified')
+        // } else {
+        //     toast('Please Enter Valid Email')
+        // }
 
-
+        await createUserWithEmailAndPassword(data.email, data.password);
+        toast('Account Create Successful')
 
     }
 
