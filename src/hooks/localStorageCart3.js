@@ -34,6 +34,7 @@ const addToCart = (food) => {
                 (p) => p.id !== item.id
             );
             selectedItem.qty = selectedItem.qty + 1;
+            // order = order
 
             foodCart = [...restItem, selectedItem];
         } else {
@@ -42,7 +43,9 @@ const addToCart = (food) => {
                 ...storedCart,
                 {
                     ...item,
-                    qty: 1
+                    qty: 1,
+                    // order=storedCart.length + 1
+
                 },
             ];
         }
@@ -51,7 +54,8 @@ const addToCart = (food) => {
             ...foodCart,
             {
                 ...item,
-                qty: 1
+                qty: 1,
+                // order
             },
         ];
     }
