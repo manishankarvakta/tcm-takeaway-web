@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { useForm } from 'react-hook-form';
 
 const OrderConfirm = () => {
@@ -8,6 +9,9 @@ const OrderConfirm = () => {
     }
     return (
         <div className='px-12'>
+            <Helmet>
+                <title>Confirm Order</title>
+            </Helmet>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control w-full">
                     <label className="label">
