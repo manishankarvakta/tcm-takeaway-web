@@ -36,7 +36,7 @@ const ViewNewCart = () => {
 
 
     const totalCalculation = (myNewItems = { myNewItems }) => {
-        console.log(myNewItems)
+        // console.log(myNewItems)
         let sum = 0;
         const totalCalculation2 = myNewItems?.map(items =>
             sum = (items.qty * items.priceList[0].mrp)
@@ -58,7 +58,7 @@ const ViewNewCart = () => {
 
 
 
-    console.log(total)
+    // console.log(total)
 
     const navigateToOrderConfirmationPage = () => {
         navigate('/orderConfirmation')
@@ -99,8 +99,11 @@ const ViewNewCart = () => {
                 <p className='text-xs font-semibold'>Total</p>
                 <p className='text-sm'>{totalSum}</p>
             </div>
+            {
+                newCart?.length > 0 ? <button onClick={() => navigateToOrderConfirmationPage()} className='btn bg-gradient-to-tr from-red-500 to-red-700 border-none text-white'>Check out</button> : <button disabled className='btn bg-gradient-to-tr from-gray-500 to-gray-700 border-none text-white'>Check out</button>
+            }
 
-            <button onClick={() => navigateToOrderConfirmationPage()} className='btn bg-gradient-to-tr from-red-500 to-red-700 border-none text-white'>Check out</button>
+
 
 
         </div>

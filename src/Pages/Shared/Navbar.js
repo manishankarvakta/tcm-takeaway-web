@@ -12,7 +12,7 @@ const Navbar = ({ nav }) => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
 
-    console.log(user?.displayName)
+    // console.log(user?.displayName)
     const logout = () => {
         signOut(auth);
 
@@ -20,9 +20,8 @@ const Navbar = ({ nav }) => {
 
 
     const [cartCount, setCartCount] = useContext(CountContext)
+    console.log(cartCount)
 
-    const getLocalData = getStoredCart();
-    setCartCount(getLocalData.length)
     const navigateToViewCart = () => {
         navigate('/')
 

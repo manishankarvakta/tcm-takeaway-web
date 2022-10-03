@@ -32,7 +32,7 @@ function App() {
   const [nav, setNav] = useState([])
 
   const [cartCount, setCartCount] = useState(0);
-
+  // console.log(cartCount)
 
   return (
     <div className="App font-serif">

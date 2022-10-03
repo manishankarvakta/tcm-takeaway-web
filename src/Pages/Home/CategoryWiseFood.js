@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Navbar from '../Shared/Navbar';
 import { useContext } from 'react';
 import { CountContext } from '../../App';
+import { totalCalculationForQuantity } from '../../hooks/handleQuantity';
 
 const CategoryWiseFood = ({ menuFood, setOpenModal, setNav }) => {
 
@@ -21,7 +22,13 @@ const CategoryWiseFood = ({ menuFood, setOpenModal, setNav }) => {
         const getCart = getStoredCart()
         setNav(getCart)
         setCartCount(getCart?.length)
+
+        console.log(getCart)
+        const totalQuantity = totalCalculationForQuantity(getCart);
+        setCartCount(totalQuantity)
+        console.log(totalQuantity)
         toast("Your Item is added to your cart");
+
 
     }
 

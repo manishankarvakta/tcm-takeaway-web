@@ -2,19 +2,21 @@ import React, { useContext, useState } from 'react';
 import { PlusCircleIcon, MinusCircleIcon, MinusIcon } from '@heroicons/react/24/solid';
 import { addToDb, getStoredCart, removeQuantity } from '../../hooks/localStorageCart3';
 import { useEffect } from 'react';
+import { CountContext } from '../../App';
+import { totalCalculationForQuantity } from '../../hooks/handleQuantity';
 
 
 const ViewNewCartItems = ({ myNewItem, removeFoodFromCart, totalCalculation, setTotalSum }) => {
 
     const [count, setCount] = useState(1);
     const previousQuantity = myNewItem.qty;
-    console.log(previousQuantity);
+    // console.log(previousQuantity);
 
     useEffect(() => {
         setCount(previousQuantity)
     }, [myNewItem])
 
-
+    const [cartCount, setCartCount] = useContext(CountContext)
 
     const handleAddition = (myNewItem) => {
         const { id } = myNewItem;
@@ -26,6 +28,11 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart, totalCalculation, set
         // totalCalculation(data);
         const total = totalCalculation(data);
         setTotalSum(total)
+
+        setCartCount(data)
+        const totalQuantity = totalCalculationForQuantity(data);
+        console.log(totalQuantity);
+        setCartCount(totalQuantity)
     }
     const handleSubtraction = (menuFood) => {
         const { id } = myNewItem;
@@ -44,6 +51,9 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart, totalCalculation, set
         // totalCalculation(data);
         const total = totalCalculation(data);
         setTotalSum(total)
+        const totalQuantity = totalCalculationForQuantity(data);
+        console.log(totalQuantity);
+        setCartCount(totalQuantity)
     }
 
     return (
