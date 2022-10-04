@@ -27,7 +27,9 @@ const CategoryWiseFood = ({ menuFood, setOpenModal, setNav }) => {
         const totalQuantity = totalCalculationForQuantity(getCart);
         setCartCount(totalQuantity)
         console.log(totalQuantity)
-        toast("Your Item is added to your cart");
+        toast("Your Item is added to your cart", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
 
 
     }
