@@ -11,7 +11,7 @@ const ViewDrawerCart = ({ setNav }) => {
     return (
         <div className='max-h-max overflow-hidden'>
 
-            <div className="drawer drawer-end">
+            <div className="drawer drawer-end h-auto">
                 <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content overflow-hidden">
 

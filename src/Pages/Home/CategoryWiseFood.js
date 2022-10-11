@@ -58,7 +58,7 @@ const CategoryWiseFood = ({ menuFood, setOpenModal, setNav }) => {
 
 
         // </div>
-        <div className='w-full flex justify-center items-center'>
+        <div className='w-full flex justify-center items-center h-auto'>
             <div className='w-1/2'>
                 <label
                     htmlFor="food-details-modal"
