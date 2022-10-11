@@ -21,6 +21,7 @@ import Career from './Pages/FooterPages/Career';
 import TermsOfUse from './Pages/FooterPages/TermsOfUse';
 import PrivacyPolicy from './Pages/FooterPages/PrivacyPolicy';
 import ReturnPolicy from './Pages/FooterPages/ReturnPolicy';
+import RequireAuth from './Pages/LogIn/RequireAuth';
 
 
 
@@ -35,7 +36,7 @@ function App() {
   // console.log(cartCount)
 
   return (
-    <div className="App font-serif">
+    <div className="App font-serif overflow-y-scroll no-scrollbar scrollbar-hide">
       <CountContext.Provider value={[cartCount, setCartCount]}>
         <Navbar
           nav={nav}
@@ -46,7 +47,13 @@ function App() {
             setNav={setNav}
           ></Home>}></Route>
           <Route path='/home' element={<Home></Home>}></Route>
-          <Route path='/orderConfirmation' element={<OrderConfirm></OrderConfirm>}></Route>
+
+          <Route path='/orderConfirmation' element={
+            <RequireAuth>
+              <OrderConfirm></OrderConfirm>
+            </RequireAuth>}></Route>
+
+          {/* <Route path='/orderConfirmation' element={<OrderConfirm></OrderConfirm>}></Route> */}
           <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>
           <Route path='/allproducts' element={<Allproducts></Allproducts>}></Route>
           {/* <Route path='/viewcart' element={<ViewCart></ViewCart>}></Route> */}
