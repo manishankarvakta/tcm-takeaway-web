@@ -5,17 +5,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { useState } from 'react';
 
-
-
-
-const Register = () => {
-
+const RegisterNew = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const [otpField, setOtpField] = useState(false);
+    const [otp, setOtp] = useState(0)
 
 
-    const phoneNumber = '+8801521103263';
+    // const phoneNumber = '+8801521103263';
 
     const generateRecapture = () => {
         window.recaptchaVerifier = new RecaptchaVerifier('phone-sign-in', {
@@ -27,8 +26,10 @@ const Register = () => {
         }, auth);
     }
 
-    const signInWithPhone = () => {
+    const signInWithPhone = (data) => {
         generateRecapture();
+        const phoneNumber = "+88" + data.address;
+        console.log(phoneNumber)
         const appVerifier = window.recaptchaVerifier;
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
             .then((confirmationResult) => {
@@ -43,10 +44,6 @@ const Register = () => {
             });
 
     }
-
-
-
-
 
     const [
         createUserWithEmailAndPassword,
@@ -63,7 +60,7 @@ const Register = () => {
 
 
 
-    const onSubmit = async data => {
+    const onSubmit = data => {
         // const validEmail = await sendEmailVerification();
         // if (validEmail) {
         //     await createUserWithEmailAndPassword(data.email, data.password);
@@ -72,10 +69,56 @@ const Register = () => {
         //     toast('Please Enter Valid Email')
         // }
 
-        await createUserWithEmailAndPassword(data.email, data.password);
-        toast('Account Create Successful')
+        console.log(data)
+        const isNumber = /^\d/.test(data?.address);
+
+        if (isNumber) {
+            callingSignInWithPhoneNumber(data)
+        } else {
+            callingSignInWithEmailAddress(data)
+        }
+
+
+        // await createUserWithEmailAndPassword(data.email, data.password);
+        // toast('Account Create Successful')
 
     }
+
+    const callingSignInWithPhoneNumber = (data) => {
+        signInWithPhone(data)
+        setOtpField(true)
+    }
+
+    const callingSignInWithEmailAddress = async data => {
+
+        const isEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(data.address);
+        const email = data.address
+
+        if (isEmail) {
+            console.log(data)
+            await createUserWithEmailAndPassword(email, data.password)
+                .then(function () {
+                    user.updateProfile({
+                        displayName: data.name,
+
+                    });
+                })
+
+            toast('Account Create Successful')
+        }
+        else {
+            window.alert("Give valid Email Address")
+        }
+
+
+        // console.log(isEmail)
+
+    }
+
+    const varifyOTP = () => {
+
+    }
+
 
     if (user || gUser || fuser) {
 
@@ -90,7 +133,6 @@ const Register = () => {
     if (error || gError || ferror || verror) {
         signInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
     }
-
     return (
         <div>
             <div className='flex justify-center items-center'>
@@ -121,27 +163,24 @@ const Register = () => {
 
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text">Email/Phone Number</span>
                                 </label>
                                 <input
-                                    type="email"
-                                    placeholder="Your Email"
+                                    type="text"
+                                    placeholder="Your Email/Phone Number"
                                     className="input input-bordered w-full max-w-xs text-black"
-                                    {...register("email", {
+                                    {...register("address", {
                                         required: {
                                             value: true,
-                                            message: 'Email is Required'
+                                            message: 'Email/Phone is Required'
                                         },
-                                        pattern: {
-                                            value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                                            message: 'Provide a valid Email'
-                                        }
+                                        // pattern: {
+                                        //     // value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                                        //     message: 'Provide a valid Email or Phone Number'
+                                        // }
                                     })}
                                 />
-                                <label className="label">
-                                    {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                                    {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                                </label>
+
                             </div>
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
@@ -171,6 +210,16 @@ const Register = () => {
 
                             <input className='btn w-full max-w-xs text-white' type="submit" value="Sign Up" />
                         </form>
+
+                        {
+                            otpField && <>
+                                <label className="label">
+                                    <span className="label-text">OTP</span>
+                                </label>
+                                <input type="number" className="input input-bordered w-full max-w-xs text-black" value={otp} onChange={() => varifyOTP()} />
+                            </>
+                        }
+
                         <p><small>Already have an account? <Link className='text-accent' to="/login">Please login</Link></small></p>
                         <div className="divider">OR</div>
                         {signInError}
@@ -194,4 +243,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default RegisterNew;

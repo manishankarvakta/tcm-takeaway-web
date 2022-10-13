@@ -64,7 +64,7 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart, totalCalculation, set
                 </div>
                 <div className='w-1/2 justify-items-center items-center'>
                     <div>
-                        <h2 className="text-center font-bold text-sm">{myNewItem?.name}</h2>
+                        <h2 className="text-center font-bold text-sm text-amber-400">{myNewItem?.name}</h2>
 
                         <p className='text-center text-xs'>Price: {myNewItem.priceList[0].mrp * count}</p>
                         <div className='flex justify-center items-center space-x-4 mb-2'>
@@ -72,7 +72,7 @@ const ViewNewCartItems = ({ myNewItem, removeFoodFromCart, totalCalculation, set
                                 count > 1 ? <MinusCircleIcon onClick={() => handleSubtraction(myNewItem)} className='h-6 w-6'></MinusCircleIcon> : <MinusCircleIcon className='h-6 w-6'></MinusCircleIcon>
                             }
                             {/* <input type="text" placeholder="0" disabled value={count} className="w-10 input input-bordered text-center"></input> */}
-                            <p>{count}</p>
+                            <p className='text-amber-400'>{count}</p>
                             <PlusCircleIcon onClick={() => handleAddition(myNewItem)} className='h-6 w-6'></PlusCircleIcon>
                         </div>
                         <button onClick={() => removeFoodFromCart(myNewItem)} className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</button>

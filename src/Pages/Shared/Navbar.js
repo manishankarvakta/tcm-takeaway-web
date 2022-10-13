@@ -38,7 +38,7 @@ const Navbar = ({ nav }) => {
 
 
     return (
-        <div className="navbar bg-base-100 bg-white font-sans">
+        <div className="navbar bg-neutral text-amber-400 font-sans">
             <div className="navbar-start">
                 <div className="dropdown">
                     <Link to='/' className="btn btn-ghost normal-case text-xl w-full">
@@ -75,7 +75,7 @@ const Navbar = ({ nav }) => {
             <div className="navbar-end">
                 <span class="relative inline-block pr-2 pl-2">
                     <label htmlFor="my-drawer-4" className="drawer-button">
-                        <ShoppingCartIcon onClick={() => navigateToViewCart()} className="h-6 w-6 text-black hover:cursor-pointer"
+                        <ShoppingCartIcon onClick={() => navigateToViewCart()} className="h-6 w-6 text-white hover:cursor-pointer"
                         ></ShoppingCartIcon>
                     </label>
 
@@ -95,7 +95,7 @@ const Navbar = ({ nav }) => {
                                     {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg> */}
                                     {user?.displayName || 'User'}
                                 </label>
-                                <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box">
+                                <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-1 shadow bg-base-100 rounded-box w-36 bg-neutral">
 
                                     {/* <li >
                                         <Link to='/dashboard' className="justify-between">
@@ -105,18 +105,18 @@ const Navbar = ({ nav }) => {
                                     </li> */}
                                     <li>
                                         <Link to='/dashboard' className="justify-between cursor-pointer">
-                                            Personal Info
+                                            Profile
                                         </Link>
 
                                     </li>
                                     <li>
                                         <Link to='/dashboard/updatepersonalinfo' className="justify-between cursor-pointer">
-                                            Update Personal Info
+                                            Update Profile
                                         </Link>
 
                                     </li>
                                     <li><Link to='/dashboard/perivousorders' className="justify-between cursor-pointer">Previous Order</Link></li>
-                                    <li tabIndex={0} className='cursor-pointer px-4 font-semibold' onClick={logout}>Log Out</li>
+                                    <li tabIndex={0} className='cursor-pointer font-semibold' onClick={logout}>Log Out</li>
 
                                 </ul>
                             </div>

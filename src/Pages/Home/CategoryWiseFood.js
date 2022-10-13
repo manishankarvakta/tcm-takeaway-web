@@ -63,14 +63,14 @@ const CategoryWiseFood = ({ menuFood, setOpenModal, setNav }) => {
                 <label
                     htmlFor="food-details-modal"
                     onClick={() => setOpenModal(menuFood)}
-                ><figure><img className='rounded' src='https://i.ibb.co/K6hpLmj/pasta-fettuccine-bolognese-with-tomato-sauce-white-bowl.jpg' alt="menu" /></figure>
+                ><figure><img className='rounded-full h-40 w-40' src='https://i.ibb.co/K6hpLmj/pasta-fettuccine-bolognese-with-tomato-sauce-white-bowl.jpg' alt="menu" /></figure>
                 </label>
             </div>
             <div className='w-1/2 justify-items-center items-center'>
                 <div>
                     <h2 className="text-center font-bold text-md">{name}</h2>
 
-                    <p className='text-center'>Price: {priceList[0]?.mrp}</p>
+                    <p className='text-center text-white'>Price: {priceList[0]?.mrp}</p>
                 </div>
 
                 <div className='space-x-4 justify-end items-end'>

@@ -18,8 +18,10 @@ const Login = () => {
         signInWithEmailAndPassword(data.email, data.password);
 
     }
+    console.log(gUser)
 
     if (user || gUser || fuser) {
+
         navigate('/')
     }
 
@@ -29,7 +31,7 @@ const Login = () => {
     }
 
     return (
-        <div className='flex lg:h-screen lg:justify-center lg:items-center'>
+        <div className='flex lg:h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-bold">Login</h2>
@@ -42,7 +44,7 @@ const Login = () => {
                             <input
                                 type="email"
                                 placeholder="Your Email"
-                                className="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs text-black"
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -66,7 +68,7 @@ const Login = () => {
                             <input
                                 type="password"
                                 placeholder="Password"
-                                className="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs text-black"
                                 {...register("password", {
                                     required: {
                                         value: true,

@@ -28,7 +28,7 @@ const ViewDrawerCart = ({ setNav }) => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-                    <div className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content ">
+                    <div className="menu p-4 overflow-y-auto w-80 bg-neutral text-white">
 
                         <ViewNewCart
                         ></ViewNewCart>

@@ -94,7 +94,8 @@ const OrderConfirm = () => {
                                 <textarea
                                     type="text"
                                     placeholder="Your Address"
-                                    className="input input-bordered w-full h-32"
+                                    className="input input-bordered w-full h-32 text-black
+                                    "
                                     {...register("address", {
                                         required: {
                                             value: true,
@@ -116,7 +117,7 @@ const OrderConfirm = () => {
                                 <input
                                     type="text"
                                     placeholder="Your Phone Number"
-                                    className="input input-bordered w-full"
+                                    className="input input-bordered w-full text-black"
                                     {...register("pNumber", {
                                         required: {
                                             value: true,
