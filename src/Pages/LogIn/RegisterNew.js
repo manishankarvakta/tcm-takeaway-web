@@ -11,7 +11,7 @@ const RegisterNew = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
     const [otpField, setOtpField] = useState(false);
-    const [otp, setOtp] = useState(0)
+    const [otp, setOtp] = useState("")
 
 
     // const phoneNumber = '+8801521103263';
@@ -53,6 +53,7 @@ const RegisterNew = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, fuser, floading, ferror] = useSignInWithFacebook(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     const [sendEmailVerification, sending, verror] = useSendEmailVerification(
         auth
@@ -60,7 +61,7 @@ const RegisterNew = () => {
 
 
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
         // const validEmail = await sendEmailVerification();
         // if (validEmail) {
         //     await createUserWithEmailAndPassword(data.email, data.password);
@@ -97,12 +98,7 @@ const RegisterNew = () => {
         if (isEmail) {
             console.log(data)
             await createUserWithEmailAndPassword(email, data.password)
-                .then(function () {
-                    user.updateProfile({
-                        displayName: data.name,
-
-                    });
-                })
+            navigate('/completeInfoPhone')
 
             toast('Account Create Successful')
         }
@@ -115,8 +111,25 @@ const RegisterNew = () => {
 
     }
 
-    const varifyOTP = () => {
-
+    const varifyOTP = (e) => {
+        console.log(e)
+        let otpValue = e?.target.value;
+        console.log(otpValue)
+        setOtp(otpValue)
+        if (otpValue?.length === 6) {
+            let confirmationResult = window.confirmationResult;
+            confirmationResult.confirm(otpValue).then((result) => {
+                // User signed in successfully.
+                const user = result.user;
+                console.log(user)
+                navigate('/completeInfo')
+                toast('Account Creation is Successful')
+                // ...
+            }).catch((error) => {
+                // User couldn't sign in (bad verification code?)
+                // ...
+            });
+        }
     }
 
 
@@ -141,7 +154,7 @@ const RegisterNew = () => {
                         <h2 className="text-center text-2xl font-bold">Sign Up</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
 
-                            <div className="form-control w-full max-w-xs">
+                            {/* <div className="form-control w-full max-w-xs">
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
@@ -159,7 +172,7 @@ const RegisterNew = () => {
                                 <label className="label">
                                     {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
                                 </label>
-                            </div>
+                            </div> */}
 
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
@@ -206,19 +219,20 @@ const RegisterNew = () => {
                                     {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 </label>
                             </div>
+                            {
+                                otpField && <>
+                                    <label className="label">
+                                        <span className="label-text">OTP</span>
+                                    </label>
+                                    <input type="number" className="input input-bordered w-full max-w-xs text-black mb-4" onChange={varifyOTP} />
+                                </>
+                            }
 
 
                             <input className='btn w-full max-w-xs text-white' type="submit" value="Sign Up" />
                         </form>
 
-                        {
-                            otpField && <>
-                                <label className="label">
-                                    <span className="label-text">OTP</span>
-                                </label>
-                                <input type="number" className="input input-bordered w-full max-w-xs text-black" value={otp} onChange={() => varifyOTP()} />
-                            </>
-                        }
+
 
                         <p><small>Already have an account? <Link className='text-accent' to="/login">Please login</Link></small></p>
                         <div className="divider">OR</div>
@@ -227,10 +241,10 @@ const RegisterNew = () => {
                             onClick={() => signInWithGoogle()}
                             className="btn btn-outline"
                         >Continue with Google</button>
-                        <button
+                        {/* <button
                             onClick={() => signInWithPhone()}
                             className="btn btn-outline"
-                        >Sign in with phone number</button>
+                        >Sign in with phone number</button> */}
                         <button
                             onClick={() => signInWithFacebook()}
                             className="btn btn-outline"
