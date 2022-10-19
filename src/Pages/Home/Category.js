@@ -10,11 +10,10 @@ const Category = ({ category, setId }) => {
   };
   // shadow-xl  hover:bg-orange-200 hover:scale-105
   return (
-    <div>
+    <div className="bg-black text-white">
       <div
         onClick={() => loadCategoryWiseFoods(_id)}
-        className="card bg-base-100 mx-2 pb-2 px-2 mb-2 cursor-pointer hover:text-red-600"
-      >
+        className="card mx-2 pb-2 px-2 mb-2 cursor-pointer  bg-black text-white hover:text-red-600">
         <figure className="px-2 pt-2">
           <img
             className="h-20 w-20 rounded-full"

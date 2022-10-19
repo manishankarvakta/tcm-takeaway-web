@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Navbar from '../Shared/Navbar';
 import { useContext } from 'react';
 import { CountContext } from '../../App';
+import { totalCalculationForQuantity } from '../../hooks/handleQuantity';
 
 const CategoryWiseFood = ({ menuFood, setOpenModal, setNav }) => {
 
@@ -21,7 +22,15 @@ const CategoryWiseFood = ({ menuFood, setOpenModal, setNav }) => {
         const getCart = getStoredCart()
         setNav(getCart)
         setCartCount(getCart?.length)
-        toast("Your Item is added to your cart");
+
+        console.log(getCart)
+        const totalQuantity = totalCalculationForQuantity(getCart);
+        setCartCount(totalQuantity)
+        console.log(totalQuantity)
+        toast("Your Item is added to your cart", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+
 
     }
 
@@ -49,19 +58,19 @@ const CategoryWiseFood = ({ menuFood, setOpenModal, setNav }) => {
 
 
         // </div>
-        <div className='w-full flex justify-center items-center'>
+        <div className='w-full flex justify-center items-center h-auto'>
             <div className='w-1/2'>
                 <label
                     htmlFor="food-details-modal"
                     onClick={() => setOpenModal(menuFood)}
-                ><figure><img className='rounded' src='https://i.ibb.co/K6hpLmj/pasta-fettuccine-bolognese-with-tomato-sauce-white-bowl.jpg' alt="menu" /></figure>
+                ><figure><img className='rounded-full h-40 w-40' src='https://i.ibb.co/K6hpLmj/pasta-fettuccine-bolognese-with-tomato-sauce-white-bowl.jpg' alt="menu" /></figure>
                 </label>
             </div>
             <div className='w-1/2 justify-items-center items-center'>
                 <div>
                     <h2 className="text-center font-bold text-md">{name}</h2>
 
-                    <p className='text-center'>Price: {priceList[0]?.mrp}</p>
+                    <p className='text-center text-white'>Price: {priceList[0]?.mrp}</p>
                 </div>
 
                 <div className='space-x-4 justify-end items-end'>

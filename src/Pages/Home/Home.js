@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import Banner from './Banner';
-import CategoryWiseFoods from './CategoryWiseFoods';
-import Menus from './Menus';
-import MenuSelectedFoods from './MenuSelectedFoods';
 import 'react-toastify/dist/ReactToastify.css';
 import ViewDrawerCart from './ViewDrawerCart';
-import { getStoredCart } from '../../hooks/localStorageCart3';
-
+import { Helmet } from "react-helmet";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Home = ({ setNav }) => {
-
+    const [user] = useAuthState(auth);
+    console.log(user)
 
     return (
-        <div className='overflow-x-hidden'>
+        <div>
+            <Helmet>
+                <title>TCM TakeWay
+                </title>
+
+            </Helmet>
             <ViewDrawerCart
                 setNav={setNav}
             ></ViewDrawerCart>

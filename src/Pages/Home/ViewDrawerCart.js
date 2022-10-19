@@ -9,8 +9,9 @@ const ViewDrawerCart = ({ setNav }) => {
     const getCartData = getStoredCart();
     const [id, setId] = useState('632034faef40a0aafbee12f9')
     return (
-        <div className='max-h-max'>
-            <div className="drawer drawer-end">
+        <div className='max-h-max overflow-hidden'>
+
+            <div className="drawer drawer-end h-auto">
                 <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content overflow-hidden">
 
@@ -27,7 +28,7 @@ const ViewDrawerCart = ({ setNav }) => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-                    <div className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content ">
+                    <div className="menu p-4 overflow-y-auto w-80 bg-neutral text-white">
 
                         <ViewNewCart
                         ></ViewNewCart>

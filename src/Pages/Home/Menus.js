@@ -27,6 +27,27 @@ const Menus = ({ setId }) => {
   //     slidesToScroll: 1,
 
   // };
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "black", borderRadius: "20px" }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "black", borderRadius: "20px" }}
+        onClick={onClick}
+      />
+    );
+  }
 
   const settings = {
     dots: false,
@@ -36,12 +57,11 @@ const Menus = ({ setId }) => {
     autoplaySpeed: 3000,
     slidesToShow: 8,
     slidesToScroll: 3,
-    prevArrow: (
-      <ArrowLeftCircleIcon className="h-5 w-5 fill-black cursor-pointer" />
-    ),
-    nextArrow: (
-      <ArrowRightCircleIcon className="h-5 w-5 fill-black cursor-pointer" />
-    ),
+    arrows: true,
+    prevArrow: <SamplePrevArrow />
+    ,
+    nextArrow: <SampleNextArrow />
+    ,
     beforeChange: (current, next) => {
       console.log(next);
     },
@@ -55,7 +75,7 @@ const Menus = ({ setId }) => {
     ],
   };
 
-  const loadMenus = () => { };
+
   return (
     <div className="mb-5 justify-center items-center lg:px-12">
       <h1 className="font-semibold text-3xl"><i>Categories</i></h1>

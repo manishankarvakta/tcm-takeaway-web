@@ -36,7 +36,7 @@ const ViewNewCart = () => {
 
 
     const totalCalculation = (myNewItems = { myNewItems }) => {
-        console.log(myNewItems)
+        // console.log(myNewItems)
         let sum = 0;
         const totalCalculation2 = myNewItems?.map(items =>
             sum = (items.qty * items.priceList[0].mrp)
@@ -58,12 +58,12 @@ const ViewNewCart = () => {
 
 
 
-    console.log(total)
+    // console.log(total)
 
     const navigateToOrderConfirmationPage = () => {
         navigate('/orderConfirmation')
     }
-
+    let newCart = myNewItems?.sort((a, b) => b.order - a.order);
 
     return (
         <div>
@@ -76,8 +76,9 @@ const ViewNewCart = () => {
             </div>
             <div className='grid grid-cols-1 gap-12 drop-shadow-md justify-items-center items-center pt-5'>
                 {
-                    myNewItems?.length > 0 ?
-                        myNewItems?.map(myNewItem =>
+
+                    newCart?.length > 0 ?
+                        newCart?.map(myNewItem =>
                             <ViewNewCartItems
                                 myNewItem={myNewItem}
                                 removeFoodFromCart={removeFoodFromCart}
@@ -98,8 +99,11 @@ const ViewNewCart = () => {
                 <p className='text-xs font-semibold'>Total</p>
                 <p className='text-sm'>{totalSum}</p>
             </div>
+            {
+                newCart?.length > 0 ? <button onClick={() => navigateToOrderConfirmationPage()} className='btn bg-gradient-to-tr from-red-500 to-red-700 border-none text-white'>Check out</button> : <button disabled className='btn bg-gradient-to-tr from-gray-500 to-gray-700 border-none text-white'>Check out</button>
+            }
 
-            <button onClick={() => navigateToOrderConfirmationPage()} className='btn bg-gradient-to-tr from-red-500 to-red-700 border-none text-white'>Check out</button>
+
 
 
         </div>

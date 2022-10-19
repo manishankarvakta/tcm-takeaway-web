@@ -42,12 +42,12 @@ const CategoryWiseFoods = ({ id, setNav }) => {
                     setOpenModal={setOpenModal}
                 ></FoodDetailsModal>
             } */}
-            {
+            {/* {
                 openModal && <NewFoodModal
                     openModal={openModal}
                     setOpenModal={setOpenModal}
                 ></NewFoodModal>
-            }
+            } */}
 
         </div>
     );

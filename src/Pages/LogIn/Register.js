@@ -4,11 +4,50 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+
+
+
 
 const Register = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
+
+
+    const phoneNumber = '+8801521103263';
+
+    const generateRecapture = () => {
+        window.recaptchaVerifier = new RecaptchaVerifier('phone-sign-in', {
+            'size': 'invisible',
+            'callback': (response) => {
+                // reCAPTCHA solved, allow signInWithPhoneNumber.
+
+            }
+        }, auth);
+    }
+
+    const signInWithPhone = () => {
+        generateRecapture();
+        const appVerifier = window.recaptchaVerifier;
+        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+            .then((confirmationResult) => {
+                // SMS sent. Prompt user to type the code from the message, then sign the
+                // user in with confirmationResult.confirm(code).
+                window.confirmationResult = confirmationResult;
+                // ...
+                console.log(confirmationResult)
+            }).catch((error) => {
+                // Error; SMS not sent
+                // ...
+            });
+
+    }
+
+
+
+
+
     const [
         createUserWithEmailAndPassword,
         user,
@@ -25,19 +64,24 @@ const Register = () => {
 
 
     const onSubmit = async data => {
-        const validEmail = await sendEmailVerification();
-        if (validEmail) {
-            await createUserWithEmailAndPassword(data.email, data.password);
-            toast('Email is Verified')
-        } else {
-            toast('Please Enter Valid Email')
-        }
+        // const validEmail = await sendEmailVerification();
+        // if (validEmail) {
+        //     await createUserWithEmailAndPassword(data.email, data.password);
+        //     toast('Email is Verified')
+        // } else {
+        //     toast('Please Enter Valid Email')
+        // }
 
-
+        await createUserWithEmailAndPassword(data.email, data.password);
+        toast('Account Create Successful')
 
     }
 
     if (user || gUser || fuser) {
+
+        //  TODO:: registration successful hole oi user diye pos a ekta customer create korbo. SMS confirmation. Name email, phone , 
+        // 
+
         navigate('/')
     }
 
@@ -49,7 +93,7 @@ const Register = () => {
 
     return (
         <div>
-            <div className='flex lg:justify-center lg:items-center'>
+            <div className='flex justify-center items-center'>
                 <div className="card w-96 bg-base-100 shadow-xl">
                     <div className="card-body">
                         <h2 className="text-center text-2xl font-bold">Sign Up</h2>
@@ -62,7 +106,7 @@ const Register = () => {
                                 <input
                                     type="text"
                                     placeholder="Your Name"
-                                    className="input input-bordered w-full max-w-xs"
+                                    className="input input-bordered w-full max-w-xs text-black"
                                     {...register("name", {
                                         required: {
                                             value: true,
@@ -82,7 +126,7 @@ const Register = () => {
                                 <input
                                     type="email"
                                     placeholder="Your Email"
-                                    className="input input-bordered w-full max-w-xs"
+                                    className="input input-bordered w-full max-w-xs text-black"
                                     {...register("email", {
                                         required: {
                                             value: true,
@@ -106,7 +150,7 @@ const Register = () => {
                                 <input
                                     type="password"
                                     placeholder="Password"
-                                    className="input input-bordered w-full max-w-xs"
+                                    className="input input-bordered w-full max-w-xs text-black"
                                     {...register("password", {
                                         required: {
                                             value: true,
@@ -135,10 +179,15 @@ const Register = () => {
                             className="btn btn-outline"
                         >Continue with Google</button>
                         <button
+                            onClick={() => signInWithPhone()}
+                            className="btn btn-outline"
+                        >Sign in with phone number</button>
+                        <button
                             onClick={() => signInWithFacebook()}
                             className="btn btn-outline"
                         >Continue with Facebook</button>
                     </div>
+                    <div id='phone-sign-in'></div>
                 </div>
             </div >
         </div>
